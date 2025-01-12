@@ -1,0 +1,11 @@
+User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: *
+Disallow: /*.png$
+Disallow: /*.jpg$
+Disallow: /*.jpeg$
+Disallow: /*.gif$
+Disallow: /*.otf$
+Disallow: /*.tff$
+Disallow: /*.svg$
