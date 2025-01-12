@@ -1,0 +1,16 @@
+{
+  "name": "gdclub-website",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run develop\""
+  },
+  "keywords": [],
+  "author": "Khaleel Gibran <khalby786@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.2.2",
+    "@vercel/node": "^3.2.23"
+  }
+}
