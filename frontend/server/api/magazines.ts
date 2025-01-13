@@ -11,5 +11,14 @@ export default defineEventHandler(async (event) => {
     }
   );
 
-  return result;
+  const magazines = result.data.reduce((acc, magazine) => {
+    const season = magazine.season.toLowerCase().replace(/\s/g, "");
+    if (!acc[season]) {
+      acc[season] = [];
+    }
+    acc[season].push(magazine);
+    return acc;
+  }, {});
+
+  return magazines;
 });

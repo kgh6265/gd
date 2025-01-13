@@ -12,5 +12,5 @@ export default defineEventHandler(async (event) => {
     }
   );
 
-  return result;
+  return result.data.sort((a, b) => a.id - b.id);
 });

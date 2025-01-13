@@ -55,7 +55,9 @@
         </p> -->
     </div>
     <div id="tagline-text" class="mt-[90vh]">
-      <p class="uppercase p-2 text-[11px] md:text-sm lg:text-lg text-center text-zinc-500">
+      <p
+        class="uppercase p-2 text-[11px] md:text-sm lg:text-lg text-center text-zinc-500"
+      >
         Embark on a relentless pursuit of excellence with us. Shape the future
         of design with creativity & precision.
       </p>
@@ -108,7 +110,9 @@
       </div>
     </div>
     <div id="magazines" class="p-10 md:p-20 lg:p-40 max-w-[1600px] m-auto">
-      <h2 class="text-4xl lg:text-5xl mb-10 text-[#C4D600] mt-20 lg:mt-0">E-magazines</h2>
+      <h2 class="text-4xl lg:text-5xl mb-10 text-[#C4D600] mt-20 lg:mt-0">
+        E-magazines
+      </h2>
       <p class="text-xl lg:text-2xl mb-10">
         Read our e-magazine, Palette Perspectives, with six amazing issues
         published every semester.<br /><span class="text-zinc-500"
@@ -137,7 +141,9 @@
       </UTabs>
     </div>
     <div id="events" class="p-10 md:p-20 lg:p-40 max-w-[1600px] m-auto">
-      <h2 class="text-4xl lg:text-5xl mb-10 text-[#84BD00] mt-20 lg:mt-0">Events</h2>
+      <h2 class="text-4xl lg:text-5xl mb-10 text-[#84BD00] mt-20 lg:mt-0">
+        Events
+      </h2>
       <UTabs
         :items="eventTabs"
         :ui="{
@@ -151,19 +157,23 @@
         }"
       >
         <template #upcoming="{ item }">
-          <EventList :events="upcomingEvents" />
+          <EventList :events="events.upcomingEvents" />
         </template>
         <template #past="{ item }">
-          <EventList :events="pastEvents" />
+          <EventList :events="events.pastEvents" />
         </template>
       </UTabs>
     </div>
     <div id="members" class="p-10 md:p-20 lg:p-40 max-w-[1600px] m-auto">
-      <h2 class="text-4xl lg:text-5xl mb-10 text-[#009CBD] mt-20 lg:mt-0">Meet the Team</h2>
+      <h2 class="text-4xl lg:text-5xl mb-10 text-[#009CBD] mt-20 lg:mt-0">
+        Meet the Team
+      </h2>
       <Members :members="members" />
     </div>
     <div id="Contact" class="p-10 md:p-20 lg:p-40 max-w-[1600px] m-auto">
-      <h2 class="text-4xl lg:text-5xl mb-10 text-[#DA291C] mt-20 lg:mt-0">Contact</h2>
+      <h2 class="text-4xl lg:text-5xl mb-10 text-[#DA291C] mt-20 lg:mt-0">
+        Contact
+      </h2>
       <div class="lg:flex justify-start gap-10">
         <div>
           <div
@@ -188,7 +198,9 @@
           </div>
         </div>
         <div>
-          <h3 class="text-2xl lg:text-3xl mb-5 lg:mb-10 lg:mt-0 mt-10">Check out our work on our socials!</h3>
+          <h3 class="text-2xl lg:text-3xl mb-5 lg:mb-10 lg:mt-0 mt-10">
+            Check out our work on our socials!
+          </h3>
           <div class="flex items-center gap-2">
             <UIcon name="i-mdi-instagram" class="lg:w-10 lg:h-10 w-5 h-5" />
             <a
@@ -293,75 +305,9 @@ const eventTabs = [
 ];
 
 // Get all magazine data
-const magazineFetch = await $fetch("/api/magazines");
-const magazines = magazineFetch.data;
-const magazineData = magazines.reduce((acc, magazine) => {
-  const season = magazine.season.toLowerCase().replace(/\s/g, "");
-  if (!acc[season]) {
-    acc[season] = [];
-  }
-  acc[season].push(magazine);
-  return acc;
-}, {});
-
-// Get all event data
-const eventFetch = await $fetch("/api/events");
-const events = eventFetch.data;
-const upcomingEvents = events
-  .filter((event) => {
-    const eventDate = new Date(event.date);
-    const currentDate = new Date();
-    return eventDate > currentDate;
-  })
-  .reverse();
-const pastEvents = events
-  .filter((event) => {
-    const eventDate = new Date(event.date);
-    const currentDate = new Date();
-    return eventDate < currentDate;
-  })
-  .reverse();
-
-// Get all members data
-const membersFetch = await $fetch("/api/members");
-const members = membersFetch.data;
-members.sort((a, b) => a.id - b.id);
-console.log(members)
-
-// var apiRoute,
-//   heroSubtitle,
-//   heroData,
-//   heroTitle,
-//   heroImg,
-//   heroUrl,
-//   heroIssue,
-//   heroSeason,
-//   accentColor;
-
-// const hero = await $fetch("/api/hero");
-// accentColor = hero.data.accentColor;
-
-// switch (hero.data.type) {
-//   case "Magazine":
-//     apiRoute = "/api/magazines";
-//     heroSubtitle = "Palette Perspectives";
-
-//     heroData = await $fetch(apiRoute);
-//     heroTitle = heroData.data[heroData.data.length - 1].title;
-//     heroImg = heroData.data[heroData.data.length - 1].cover.url;
-//     heroUrl = heroData.data[heroData.data.length - 1].url;
-//     heroIssue = heroData.data[heroData.data.length - 1].issue;
-//     heroSeason = heroData.data[heroData.data.length - 1].season;
-//     break;
-//   case "Event":
-//     apiRoute = "/api/events";
-//     heroSubtitle = "Events";
-//     break;
-//   default:
-//     apiRoute = "/api/magazines";
-//     heroSubtitle = "Events";
-//     break;
-// }
+const { data: magazineData } = await useFetch("/api/magazines");
+const { data: events } = await useFetch("/api/events");
+const { data: members } = await useFetch("/api/members");
 </script>
 
 <style>

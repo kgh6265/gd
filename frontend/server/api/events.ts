@@ -11,5 +11,21 @@ export default defineEventHandler(async (event) => {
     }
   );
 
-  return result;
+  const events = result.data;
+  const upcomingEvents = events
+    .filter((event) => {
+      const eventDate = new Date(event.date);
+      const currentDate = new Date();
+      return eventDate > currentDate;
+    })
+    .reverse();
+  const pastEvents = events
+    .filter((event) => {
+      const eventDate = new Date(event.date);
+      const currentDate = new Date();
+      return eventDate < currentDate;
+    })
+    .reverse();
+
+  return { upcomingEvents, pastEvents };
 });
