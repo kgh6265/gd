@@ -1,7 +1,7 @@
 <!-- create a #F76902 navbar with the logo in the centre and three navigation links on either side of the logo -->
 <template>
   <nav
-    class="flex navbar w-full bg-[#F76902] p-1 pl-4 pr-20 align-middle content-center relative z-10"
+    class="flex navbar w-full bg-[#F76902] p-1 pl-4 lg:pl-20 pr-20 align-middle content-center relative z-10"
   >
     <div class="navbar__logo">
       <NuxtLink to="/">

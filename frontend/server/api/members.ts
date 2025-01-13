@@ -1,5 +1,4 @@
 export default defineEventHandler(async (event) => {
-  console.log('yo fetching members')
   const config = useRuntimeConfig(event);
 
   let result = await $fetch(
