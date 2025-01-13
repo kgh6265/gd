@@ -1,33 +1,61 @@
 <template>
   <div class="">
+    <div>
+      <USkeleton
+        v-if="!events"
+        class="mt-5 w-[30%] h-[20px]"
+        :ui="{ rounded: 'rounded-xl' }"
+      />
+      <USkeleton
+        v-if="!events"
+        class="mt-5 w-[50%] h-[20px]"
+        :ui="{ rounded: 'rounded-xl' }"
+      />
+      <USkeleton
+        v-if="!events"
+        class="mt-5 w-[30%] h-[20px]"
+        :ui="{ rounded: 'rounded-xl' }"
+      />
+      <USkeleton
+        v-if="!events"
+        class="mt-5 w-[50%] h-[20px]"
+        :ui="{ rounded: 'rounded-xl' }"
+      />
+    </div>
     <p
-      v-if="!events || events.length === 0"
+      v-if="events.length === 0"
       class="mt-5 text-8xl lg:text-9xl text-zinc-500"
     >
       ( ͡° ʖ̯ ͡°)
     </p>
     <p
-      v-if="!events || events.length === 0"
+      v-if="events.length === 0"
       class="mt-2 ml-[20px] text-lg lg:text-xl text-zinc-500 italic"
     >
       No upcoming events. Stay tuned!
     </p>
-    <div v-else class="mt-5 mb-10 space-y-10">
+    <div v-else class="mt-5 mb-10 space-y-10" v-if="!events.failed">
       <div
         v-for="event in events"
         :key="event.id"
         class="flex items-center p-1 rounded-lg"
       >
-        <div class="w-2/5 xl:w-1/5 text-sm lg:text-lg text-left self-start text-zinc-300">
+        <div
+          class="w-2/5 xl:w-1/5 text-sm lg:text-lg text-left self-start text-zinc-300"
+        >
           {{ formatDate(event.date) }}<br /><span v-if="event.location">{{
             event.location
           }}</span>
         </div>
         <div class="w-3/5 xl:w-4/5">
-          <p class="text-xl lg:text-2xl font-bold text-[#d0b7ff] transition-colors">
+          <p
+            class="text-xl lg:text-2xl font-bold text-[#d0b7ff] transition-colors"
+          >
             {{ event.title }}
           </p>
-          <p class="text-sm lg:text-lg mt-2 max-w-xl">{{ event.description }}</p>
+          <p class="text-sm lg:text-lg mt-2 max-w-xl">
+            {{ event.description }}
+          </p>
         </div>
       </div>
     </div>

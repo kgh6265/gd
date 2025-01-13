@@ -1,6 +1,29 @@
 <template>
-  <div class="flex justify-between mt-5 gap-x-1 gap-y-5 lg:gap-y-10 w-auto flex-wrap">
-    <div v-for="magazine in magazines" :key="magazine.issue" class="hover:scale-110 transition-transform duration-200 w-[47%] lg:w-[32%]">
+  <div
+    class="flex justify-between mt-5 gap-x-1 gap-y-5 lg:gap-y-7 w-auto flex-wrap"
+  >
+    <USkeleton
+      v-if="!magazines"
+      class="w-[47%] lg:w-[32%] h-[350px] lg:h-[500px]"
+      :ui="{ rounded: 'rounded-xl' }"
+    />
+    <USkeleton
+      v-if="!magazines"
+      class="w-[47%] lg:w-[32%] h-[350px] lg:h-[500px]"
+      :ui="{ rounded: 'rounded-xl' }"
+    />
+    <USkeleton
+      v-if="!magazines"
+      class="w-[47%] lg:w-[32%] h-[350px] lg:h-[500px]"
+      :ui="{ rounded: 'rounded-xl' }"
+    />
+
+    <div
+      v-if="magazines"
+      v-for="magazine in magazines"
+      :key="magazine.issue"
+      class="hover:scale-110 transition-transform duration-200 w-[47%] lg:w-[32%]"
+    >
       <a :href="magazine.url" target="_blank" rel="noopener noreferrer">
         <img
           :src="magazine.cover.url"
@@ -9,21 +32,23 @@
           loading="lazy"
         />
       </a>
-      <p class="text-xl lg:text-2xl text-right mt-2 text-zinc-400">Issue #{{ magazine.issue }}</p>
+      <p class="text-xl lg:text-2xl text-right mt-2 text-zinc-400">
+        Issue #{{ magazine.issue }}
+      </p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MagazineList',
+  name: "MagazineList",
   props: {
     magazines: {
       type: Array,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+  },
+};
 </script>
 
 <style scoped>
