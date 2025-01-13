@@ -2,8 +2,8 @@
 export default defineNuxtConfig({
   routeRules: {
     "/": { prerender: true },
-    "/events/**": { ssr: false },
-    "/dashboard": { ssr: false },
+    "/events/**": { ssr: true },
+    "/dashboard": { ssr: true },
   },
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
