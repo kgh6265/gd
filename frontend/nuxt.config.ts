@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   routeRules: {
-    "/": { ssr: true },
+    "/": { prerender: true },
     "/events/**": { ssr: false },
     "/dashboard": { ssr: false },
   },
