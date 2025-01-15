@@ -75,6 +75,9 @@
         </div>
       </div>
     </footer>
+    <div>
+      <img src="/footer.svg" class="w-full mt-[400px] lg:-mt-[200px]" />
+    </div>
   </div>
 </template>
 

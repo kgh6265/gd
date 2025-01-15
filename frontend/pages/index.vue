@@ -418,6 +418,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Geist", "Inter V", "Inter",
     sans-serif;
   background-color: #030304;
+  background: url("/noise-big.png") repeat scroll center/700px, #030304;
   font-display: swap;
   color: white;
   scroll-behavior: smooth;
