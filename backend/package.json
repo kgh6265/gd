@@ -19,6 +19,7 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
     "strapi-provider-email-resend": "^1.0.4",
+    "strapi-provider-upload-supabase-strage": "^1.0.2",
     "strapi-provider-upload-supabase-v4": "^1.0.19",
     "styled-components": "^6.0.0"
   },
