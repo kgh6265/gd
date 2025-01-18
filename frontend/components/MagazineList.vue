@@ -32,7 +32,7 @@
           loading="lazy"
         />
       </a>
-      <p class="text-xl lg:text-2xl text-right mt-2 text-zinc-400">
+      <p class="text-xl lg:text-2xl text-right mt-2 text-zinc-300">
         Issue #{{ magazine.issue }}
       </p>
     </div>

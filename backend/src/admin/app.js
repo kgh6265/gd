@@ -3,7 +3,7 @@ const config = {
   translations: {
     en: {
       "Auth.form.welcome.title": "Graphic Design Club",
-      "Auth.form.welcome.subtitle": "Khaleel does't know your password.",
+      "Auth.form.welcome.subtitle": "Khaleel doesn't know your password.",
     },
   },
   notifications: {

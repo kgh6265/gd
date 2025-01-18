@@ -40,6 +40,9 @@
     },
     "allowRegistration": {
       "type": "boolean"
+    },
+    "imageUrl": {
+      "type": "string"
     }
   }
 }

@@ -1,52 +1,53 @@
 <template>
-  <div class="h-screen">
-    <Nav />
+  <div class="h-full">
     <div
       id="main"
       class="p-5 md:p-10 lg:p-20 w-full h-screen flex justify-center items-center absolute top-0 z-0"
     >
-      <!-- <h1 class="text-8xl font-bold mt-10">The Graphic Design Club</h1> -->
-      <svg
-        width="972"
-        height="300"
-        viewBox="0 0 972 300"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        class="mt-20 relative self-center"
-      >
-        <text
-          fill="white"
-          xml:space="preserve"
-          style="white-space: pre"
-          font-family="PP Editorial"
-          font-size="64"
-          letter-spacing="0em"
+      <h1 class="hidden">RIT Dubai Graphic Design Club</h1>
+      <Transition name="fade">
+        <svg
+          width="972"
+          height="300"
+          viewBox="0 0 972 300"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="mt-20 relative self-center"
         >
-          <tspan x="98" y="59.56">The</tspan>
-        </text>
-        <text
-          fill="white"
-          xml:space="preserve"
-          style="white-space: pre"
-          font-family="PP Editorial"
-          font-size="128"
-          font-weight="800"
-          letter-spacing="0em"
-        >
-          <tspan x="0" y="147.12">Graphic Design&#10;</tspan>
-        </text>
-        <text
-          fill="white"
-          xml:space="preserve"
-          style="white-space: pre"
-          font-family="PP Editorial"
-          font-size="128"
-          font-style="italic"
-          letter-spacing="0em"
-        >
-          <tspan x="681" y="266.12">Club</tspan>
-        </text>
-      </svg>
+          <text
+            fill="white"
+            xml:space="preserve"
+            style="white-space: pre"
+            font-family="PP Editorial"
+            font-size="47"
+            letter-spacing="0em"
+          >
+            <tspan x="98" y="59.56">RIT Dubai</tspan>
+          </text>
+          <text
+            fill="#F76902"
+            xml:space="preserve"
+            style="white-space: pre"
+            font-family="PP Editorial"
+            font-size="128"
+            font-weight="800"
+            letter-spacing="0em"
+          >
+            <tspan x="0" y="147.12">Graphic Design</tspan>
+          </text>
+          <text
+            fill="white"
+            xml:space="preserve"
+            style="white-space: pre"
+            font-family="PP Editorial"
+            font-size="128"
+            font-style="italic"
+            letter-spacing="0em"
+          >
+            <tspan x="681" y="266.12">Club</tspan>
+          </text>
+        </svg>
+      </Transition>
 
       <!-- <span class="w-40 h-1 bg-[#f46530] block mt-10"></span> -->
       <!-- <p class="text-2xl mt-20">
@@ -54,7 +55,7 @@
           Shape the future of design with creativity & precision.
         </p> -->
     </div>
-    <div id="tagline-text" class="mt-[90vh]">
+    <div id="tagline-text" class="mt-[100vh]">
       <p
         class="uppercase p-2 text-[11px] md:text-sm lg:text-lg text-center text-zinc-500"
       >
@@ -157,10 +158,13 @@
         }"
       >
         <template #upcoming="{ item }">
-          <EventList :events="events.upcomingEvents" />
+          <EventList
+            :events="events.upcomingEvents"
+            :allow-registration="true"
+          />
         </template>
         <template #past="{ item }">
-          <EventList :events="events.pastEvents" />
+          <EventList :events="events.pastEvents" :allow-registration="false" />
         </template>
       </UTabs>
     </div>
@@ -206,7 +210,7 @@
             <a
               href="https://www.instagram.com/ritd_gdclub"
               target="_blank"
-              class="border-b border-[#7D55C7] hover:text-zinc-400 hover:border-zinc-400 transition:colors duration-200"
+              class="border-b border-[#7D55C7] hover:text-zinc-500 hover:border-zinc-500 transition:colors duration-200"
               ><span class="text-2xl lg:text-3xl"> Instagram </span></a
             >
           </div>
@@ -215,14 +219,13 @@
             <a
               href="https://www.linkedin.com/company/ritd-graphic-design-club/posts/?feedView=all"
               target="_blank"
-              class="border-b border-[#7D55C7] hover:text-zinc-400 hover:border-zinc-400 transition:colors duration-200"
+              class="border-b border-[#7D55C7] hover:text-zinc-500 hover:border-zinc-500 transition:colors duration-200"
               ><span class="text-2xl lg:text-3xl"> LinkedIn </span></a
             >
           </div>
         </div>
       </div>
     </div>
-    <Footer />
   </div>
 
   <!--
@@ -245,38 +248,6 @@
       data-logo_alignment="left">
   </div>
   -->
-
-  <!-- <div
-      id="main"
-      class="p-20 w-full h-full flex justify-center bg-gradient-to-r from-orange-500 to-gray-700"
-    > 
-      <div>
-        <span
-          class="p-2"
-          :style="`background-color: ${accentColor};mix-blend-mode: difference;`"
-          >{{ heroSeason }}</span
-        ><span
-          class="p-2 mt-10"
-          :style="`background-color: ${accentColor};mix-blend-mode: difference;`"
-          >Issue {{ heroIssue }}</span
-        >
-        <h1
-          class="text-8xl font-bold mt-10"
-          :style="`text-decoration-color:${accentColor};`"
-        >
-          {{ heroTitle }}
-        </h1>
-        <a :href="heroUrl" target="_blank" rel="noopener noreferrer"
-          class="hvr-sweep-to-top text-4xl mt-12 bg-white text-black p-2 pl-5 pr-5 uppercase"
-        >
-          Read Now
-        </a>
-      </div>
-      <img
-        :src="heroImg"
-        :alt="heroTitle"
-        :style="`border: 5px solid ${accentColor}`"
-      /> -->
 </template>
 
 <script setup>
@@ -308,131 +279,11 @@ const eventTabs = [
 const { data: magazineData } = await useFetch("/api/magazines");
 const { data: events } = await useFetch("/api/events");
 const { data: members } = await useFetch("/api/members");
+
+// const allEvents = useState("events", events);
 </script>
 
 <style>
-@import url("https://use.typekit.net/gmb0olm.css");
-
-/*
-font-family: "playfair-display", serif;
-font-weight: 900;
-font-style: normal;
-
-font-family: "playfair-display", serif;
-font-weight: 900;
-font-style: italic;
-*/
-
-@font-face {
-  font-family: "Geist";
-  src: url("/Geist-Thin.ttf");
-  font-weight: 100;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/Geist-ExtraLight.ttf");
-  font-weight: 200;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/Geist-Light.ttf");
-  font-weight: 300;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/Geist-Regular.ttf");
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/Geist-Medium.ttf");
-  font-weight: 500;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/Geist-SemiBold.ttf");
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/Geist-Bold.ttf");
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/Geist-ExtraBold.ttf");
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: "Geist";
-  src: url("/Geist-Black.ttf");
-  font-weight: 900;
-}
-
-@font-face {
-  font-family: "PP Editorial";
-  src: url("/PPEDITORIALNEW-REGULAR.OTF") format("opentype");
-}
-
-@font-face {
-  font-family: "PP Editorial";
-  src: url("/PPEDITORIALNEW-ITALIC.OTF") format("opentype");
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "PP Editorial";
-  src: url("/PPEDITORIALNEW-ULTRABOLD.OTF") format("opentype");
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: "PP Editorial";
-  src: url("/PPEDITORIALNEW-ULTRABOLDITALIC.OTF") format("opentype");
-  font-style: italic;
-  font-weight: 800;
-}
-
-@font-face {
-  font-family: "PP Editorial";
-  src: url("/PPEDITORIALNEW-ULTRALIGHT.OTF") format("opentype");
-  font-weight: 100;
-}
-
-@font-face {
-  font-family: "PP Editorial";
-  src: url("/PPEDITORIALNEW-ULTRALIGHTITALIC.OTF") format("opentype");
-  font-style: italic;
-  font-weight: 100;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Geist", "Inter V", "Inter",
-    sans-serif;
-  background-color: #030304;
-  background: url("/noise-big.png") repeat scroll center/700px, #030304;
-  font-display: swap;
-  color: white;
-  scroll-behavior: smooth;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "PP Editorial", "playfair-display", serif;
-}
-
 h2 {
   color: #f6be00;
 }
@@ -443,7 +294,7 @@ h2 {
     linear-gradient(180deg, rgb(244, 101, 48) 0%, rgb(63, 63, 63) 100%);
   border-bottom: 1px solid black; */
   background: url("/noise.png") repeat fixed center/20rem,
-    url("/banner.png") no-repeat 70% 35% / 2500px;
+    url("/banner.png") center center / cover no-repeat;
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.7);
   color: white;
 }
@@ -507,5 +358,15 @@ h2 {
   max-width: 100%;
   max-height: 100%;
   background: none;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

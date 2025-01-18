@@ -1,14 +1,10 @@
 <template>
-  <!-- HAND WRITTEN CODE THROUGH BLOOD, SWEAT, AND TEARS BY LEE. 2025. -->
-  <NuxtLayout>
-    <div>
-      <NuxtLoadingIndicator color="#F76902" />
-      <NuxtPage />
-    </div>
-  </NuxtLayout>
+  <Nav />
+  <div>
+    <slot />
+  </div>
+  <Footer />
 </template>
-
-<script setup></script>
 
 <style>
 @import url("https://use.typekit.net/gmb0olm.css");
@@ -133,13 +129,16 @@ h6 {
   font-family: "PP Editorial", "playfair-display", serif;
 }
 
-.page-enter-active,
-.page-leave-active {
-  transition: all 0.4s;
+h1 {
+  color: #F76902;
 }
-.page-enter-from,
-.page-leave-to {
+
+.page-fade-enter-active,
+.page-fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.page-fade-enter,
+.page-fade-leave-to {
   opacity: 0;
-  filter: blur(1rem);
 }
 </style>

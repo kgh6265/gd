@@ -528,6 +528,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     location: Schema.Attribute.String;
     cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     allowRegistration: Schema.Attribute.Boolean;
+    imageUrl: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -537,31 +538,6 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'>;
-  };
-}
-
-export interface ApiHeroHero extends Struct.SingleTypeSchema {
-  collectionName: 'heroes';
-  info: {
-    singularName: 'hero';
-    pluralName: 'heroes';
-    displayName: 'Hero';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    accentColor: Schema.Attribute.String;
-    type: Schema.Attribute.Enumeration<['Event', 'Magazine']>;
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::hero.hero'>;
   };
 }
 
@@ -1001,7 +977,6 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::about.about': ApiAboutAbout;
       'api::event.event': ApiEventEvent;
-      'api::hero.hero': ApiHeroHero;
       'api::magazine.magazine': ApiMagazineMagazine;
       'api::member.member': ApiMemberMember;
       'admin::permission': AdminPermission;

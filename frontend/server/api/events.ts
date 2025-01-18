@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
       })
       .reverse();
 
-    return { upcomingEvents, pastEvents };
+    return { allEvents: events, upcomingEvents, pastEvents };
   } catch (error) {
     return { failed: true };
   }

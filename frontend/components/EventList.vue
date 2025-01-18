@@ -43,9 +43,8 @@
         <div
           class="w-2/5 xl:w-1/5 text-sm lg:text-lg text-left self-start text-zinc-300"
         >
-          {{ formatDate(event.date) }}<br /><span v-if="event.location">{{
-            event.location
-          }}</span>
+          {{ formatDate(event.date) }}<br />{{ iso1806ToTime(event.date)
+          }}<br /><span v-if="event.location">{{ event.location }}</span>
         </div>
         <div class="w-3/5 xl:w-4/5">
           <p
@@ -56,6 +55,16 @@
           <p class="text-sm lg:text-lg mt-2 max-w-xl">
             {{ event.description }}
           </p>
+          <p
+            v-if="
+              allowRegistration === true
+            "
+            class="text-sm lg:text-lg mt-6 w-fit"
+          >
+            <NuxtLink class="text-black bg-[#d0b7ff] py-2 px-4 rounded-lg"
+              :to="`/events/${event.eventId}`">More info</NuxtLink
+            >
+          </p>
         </div>
       </div>
     </div>
@@ -63,11 +72,17 @@
 </template>
 
 <script setup>
-const props = defineProps(["events"]);
+const props = defineProps(["events", "allowRegistration"]);
 
 const formatDate = (date) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
   return new Date(date).toLocaleDateString(undefined, options);
+};
+
+const iso1806ToTime = (iso) => {
+  // Timestamp is already in the right timezone, so we need to remove the Z
+  const localTime = new Date(iso.replace("Z", ""));
+  return localTime.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
 };
 </script>
 

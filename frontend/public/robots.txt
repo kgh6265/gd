@@ -9,3 +9,7 @@ Disallow: /*.gif$
 Disallow: /*.otf$
 Disallow: /*.tff$
 Disallow: /*.svg$
+Disallow: /dashboard
+Disallow: /confirm
+Disallow: /login
+Disallow: /logout

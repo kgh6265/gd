@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@nuxt/ui": "^2.20.0",
+    "@nuxtjs/supabase": "^1.4.5",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "add-event-to-calendar": "^1.0.7",
     "nuxt": "^3.13.0",
     "vue": "latest",
     "vue-router": "latest"
