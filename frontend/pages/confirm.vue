@@ -4,25 +4,22 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const user = useSupabaseUser();
+const route = useRoute();
 
 // Get redirect path from cookies
 const cookieName = useRuntimeConfig().public.supabase.cookieName;
 const redirectPath = useCookie(`${cookieName}-redirect-path`).value;
-const priorityRedirectPath = useCookie("redirect").value;
+const priorityRedirectPath = route.query.redirect;
 
 watch(
   user,
   () => {
     if (user.value) {
-      console.log(useCookie("redirect").value)
-      if (useCookie("redirect").value !== null) {
-        // Clear cookie
-        useCookie("redirect").value = null;
-
+      if (priorityRedirectPath) {
         // Redirect to path
-        return navigateTo(priorityRedirectPath || "/");
+        return navigateTo(priorityRedirectPath);
       }
 
       // Clear cookie

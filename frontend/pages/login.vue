@@ -56,6 +56,8 @@
 <script setup>
 const supabase = useSupabaseClient();
 const error = ref(null);
+const runtimeConfig = useRuntimeConfig();
+const route = useRoute();
 
 // If user is already signed in, redirect to home
 const user = useSupabaseUser();
@@ -67,7 +69,7 @@ const signInWithGoogle = async () => {
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: "http://localhost:3000/confirm",
+      redirectTo: `${runtimeConfig.public.redirectUrl}/confirm?redirect=${route.query.redirect || '/'}`,
     },
   });
   if (error) {

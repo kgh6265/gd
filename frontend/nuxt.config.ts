@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     strapiToken: process.env.STRAPI_TOKEN,
     public: {
       strapiUrl: process.env.STRAPI_URL,
+      redirectUrl: process.env.REDIRECT_URL,
     },
   },
   colorMode: {

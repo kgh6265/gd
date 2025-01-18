@@ -1,6 +1,6 @@
 Todo
 
-- [ ] Redirect cookies
+- [X] Redirect cookies
 - [ ] Save to calendar
 - [X] Direct redirects to events, content, etc
 - [X] Dashboard for organizers

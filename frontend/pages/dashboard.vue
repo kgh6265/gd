@@ -4,11 +4,11 @@
     <!-- <p class="text-xl lg:text-2xl max-w-xl">View your past and upcoming registered events.</p> -->
     <div class="user">
       <div class="flex flex-start items-start">
-        <img
-          :src="user.user_metadata.avatar_url"
+        <div
+          :style="{ backgroundImage: `url(${user.user_metadata.avatar_url})` }"
+          class="w-14 h-14 rounded-full shadow-lg bg-cover bg-center"
           :alt="user?.user_metadata.full_name"
-          class="w-14 h-14 rounded-full shadow-lg"
-        />
+        ></div>
         <div class="ml-4">
           <p class="text-3xl lg:text-4xl">
             Hi {{ user?.user_metadata.full_name }}!

@@ -64,7 +64,7 @@
       </div>
       <Transition name="fade">
         <div
-          class="event-registration mt-10 py-10 px-10 backdrop-blur rounded-lg border border-zinc-900 max-w-[800px]"
+          class="event-registration mt-10 py-10 px-10 backdrop-blur rounded-lg border border-zinc-500 max-w-[800px]"
           v-if="showRegistration === true"
         >
           <p class="error text-xl text-red-500 mt-4" v-if="error">
@@ -258,8 +258,7 @@ const register = async () => {
   // Get the user
   const supabaseUser = useSupabaseUser();
   if (!supabaseUser.value) {
-    const redirect = useCookie("redirect", `/events/${eventId}`);
-    return navigateTo("/login");
+    await navigateTo({ name: "login", query: { redirect: `/events/${eventId}` } });
   }
 
   // Check if the user is already registered
