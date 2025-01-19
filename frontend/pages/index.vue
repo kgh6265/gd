@@ -55,11 +55,11 @@
           Shape the future of design with creativity & precision.
         </p> -->
     </div>
-    <div id="tagline-text" class="mt-[75vh] md:mt-[100vh] lg:mt-[100vh]">
+    <div id="tagline-text" class="mt-[70vh] md:mt-[100vh] lg:mt-[100vh]">
       <p
-        class="uppercase px-2 text-[11px] md:text-sm lg:text-lg text-center text-zinc-500"
+        class="uppercase text-[11px] md:text-sm lg:text-lg text-center text-zinc-500"
       >
-        Embark on a relentless pursuit of excellence with us. Shape the future
+        Embark on a relentless pursuit of excellence with us.<br /> Shape the future
         of design with creativity & precision.
       </p>
     </div>
