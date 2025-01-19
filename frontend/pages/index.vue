@@ -2,7 +2,7 @@
   <div class="h-full">
     <div
       id="main"
-      class="p-5 md:p-10 lg:p-20 w-full h-screen flex justify-center items-center absolute top-0 z-0"
+      class="p-5 md:p-10 lg:p-20 w-full h-3/4 md:h-screen lg:h-screen flex justify-center items-center absolute top-0 z-0"
     >
       <h1 class="hidden">RIT Dubai Graphic Design Club</h1>
       <Transition name="fade">
@@ -55,9 +55,9 @@
           Shape the future of design with creativity & precision.
         </p> -->
     </div>
-    <div id="tagline-text" class="mt-[100vh]">
+    <div id="tagline-text" class="mt-[75vh] md:mt-[100vh] lg:mt-[100vh]">
       <p
-        class="uppercase p-2 text-[11px] md:text-sm lg:text-lg text-center text-zinc-500"
+        class="uppercase px-2 text-[11px] md:text-sm lg:text-lg text-center text-zinc-500"
       >
         Embark on a relentless pursuit of excellence with us. Shape the future
         of design with creativity & precision.
