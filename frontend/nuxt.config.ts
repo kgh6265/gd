@@ -20,6 +20,12 @@ export default defineNuxtConfig({
     "/health-check": {
       redirect: "https://kgh6265.github.io/statuspage/",
     },
+    "/magazines/latest": {
+      isr: 3600,
+    },
+    "/banner.png": {
+      isr: 86400,
+    },
   },
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
