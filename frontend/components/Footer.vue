@@ -79,7 +79,7 @@
       </div>
     </footer>
     <div>
-      <img src="/footer.svg" class="w-full mt-[500px] lg:-mt-[200px]" />
+      <FooterPeople />
     </div>
   </div>
 </template>
