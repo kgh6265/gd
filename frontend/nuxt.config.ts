@@ -14,6 +14,12 @@ export default defineNuxtConfig({
       redirect:
         "https://cloud.umami.is/share/0Hf0pSsWTJhE0IBT/gdclub.ritdubai.ae",
     },
+    "/status": {
+      redirect: "https://kgh6265.github.io/statuspage/",
+    },
+    "/health-check": {
+      redirect: "https://kgh6265.github.io/statuspage/",
+    },
   },
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
