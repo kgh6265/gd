@@ -43,6 +43,13 @@
                 >Meet The Team</a
               >
             </li>
+            <li>
+              <a
+                href="/dashboard"
+                class="text-zinc-300 hover:text-white transition:colors duration-200 text-sm lg:text-lg"
+                >Dashboard</a
+              >
+            </li>
             <!-- <li>
               <a href="/#contact">Contact</a>
             </li> -->

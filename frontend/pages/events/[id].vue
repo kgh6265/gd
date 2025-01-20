@@ -378,7 +378,6 @@ if (supabaseUser.value) {
       }
     );
 
-    console.log(registrations.value);
     allRegistrations.value = registrations.value;
   }
 }

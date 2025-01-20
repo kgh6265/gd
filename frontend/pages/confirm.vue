@@ -5,6 +5,8 @@
 </template>
 
 <script setup>
+import isRelativeUrl from 'is-relative-url';
+
 const user = useSupabaseUser();
 const route = useRoute();
 
@@ -17,7 +19,7 @@ watch(
   user,
   () => {
     if (user.value) {
-      if (priorityRedirectPath) {
+      if (priorityRedirectPath && priorityRedirectPath !== "/" && isRelativeUrl(priorityRedirectPath)) {
         // Redirect to path
         return navigateTo(priorityRedirectPath);
       }
@@ -26,7 +28,7 @@ watch(
       useCookie(`${cookieName}-redirect-path`).value = null;
       
       // Redirect to path
-      return navigateTo(redirectPath || "/");
+      return navigateTo(redirectPath);
     }
   },
   { immediate: true }

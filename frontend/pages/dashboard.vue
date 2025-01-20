@@ -19,7 +19,20 @@
     </div>
 
     <h2 class="mt-20 text-3xl lg:text-4xl">Registered events</h2>
-
+    <div v-if="events.length === 0">
+      <p
+        v-if="events.length === 0"
+        class="mt-5 text-8xl lg:text-9xl text-zinc-500"
+      >
+        ( ͡° ʖ̯ ͡°)
+      </p>
+      <p
+        v-if="events.length === 0"
+        class="mt-2 ml-[20px] text-lg lg:text-xl text-zinc-500 italic"
+      >
+        You haven't registered for any events!
+      </p>
+    </div>
     <div
       v-for="event in events"
       :key="event.id"
@@ -68,8 +81,6 @@ const { data, error } = await supabase
   .from("event_registrations")
   .select("event_id")
   .eq("user_id", user.value.id);
-
-console.log(data);
 
 if (error) {
   console.error("Error fetching registered events", error);

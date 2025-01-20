@@ -10,6 +10,7 @@ Todo
 - [X] 404 pages
 - [X] Analytics
 - [ ] Link to website submissions
+- [ ] Switch to Google Map alternative
 
 Security bugs
 

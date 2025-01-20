@@ -54,6 +54,9 @@
 </template>
 
 <script setup>
+// This feels illegal but I don't trust myself either
+import isRelativeUrl from 'is-relative-url';
+
 const supabase = useSupabaseClient();
 const error = ref(null);
 const runtimeConfig = useRuntimeConfig();
@@ -69,7 +72,9 @@ const signInWithGoogle = async () => {
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${runtimeConfig.public.redirectUrl}/confirm?redirect=${route.query.redirect || '/'}`,
+      redirectTo: route.query.redirect && isRelativeUrl(route.query.redirect)
+        ? `${runtimeConfig.public.redirectUrl}/confirm?redirect=${route.query.redirect}`
+        : `${runtimeConfig.public.redirectUrl}/confirm`,
     },
   });
   if (error) {
