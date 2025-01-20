@@ -29,8 +29,8 @@ export default defineNuxtConfig({
   modules: ["@nuxt/ui", "@nuxtjs/tailwindcss", "@nuxtjs/supabase"],
   runtimeConfig: {
     strapiToken: process.env.STRAPI_TOKEN,
+    strapiUrl: process.env.STRAPI_URL,
     public: {
-      strapiUrl: process.env.STRAPI_URL,
       redirectUrl: process.env.REDIRECT_URL,
     },
   },

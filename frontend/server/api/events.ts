@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     let result = await $fetch(
-      `${config.public.strapiUrl}/api/events?populate=*`,
+      `${config.strapiUrl}/api/events?populate=*`,
       {
         headers: {
           "Content-Type": "application/json",

@@ -2,7 +2,7 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
 
   let result = await $fetch(
-    `${config.public.strapiUrl}/api/members?populate=*`,
+    `${config.strapiUrl}/api/members?populate=*`,
     {
       headers: {
         "Content-Type": "application/json",
