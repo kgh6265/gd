@@ -56,7 +56,7 @@
     <p>
       <b>q. Is my personal data stored safely?</b><br />
       a. Your personal data is protected by Supabase's security measures,
-      including database encryption and secure Row Level Policies (RLS) to
+      including database encryption and secure Row Level Security (RLS) policies to
       prevent unauthorized access. Read more about their security
       <a href="https://supabase.io/security" class="underline">here</a>.
     </p>
