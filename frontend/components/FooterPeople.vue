@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <svg
-      class="w-full mt-[500px] lg:-mt-[200px] h-auto"
+      class="w-full mt-[600px] lg:-mt-[200px] h-auto"
       height="312"
       viewBox="0 0 1169 312"
       fill="none"

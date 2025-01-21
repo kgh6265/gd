@@ -75,11 +75,13 @@
               <a href="/#contact">Contact</a>
             </li> -->
           </ul>
+          <p class="w-[200px] mt-10 text-zinc-500">P.O. Box 341055, Dubai Silicon Oasis, Dubai, U.A.E </p>
         </div>
         <div class="text-sm lg:text-lg text-left lg:text-right mt-10 lg:mt-0">
           <p class="text-zinc-500">© 2025 Graphic Design Club, RIT Dubai</p>
           <p class="text-zinc-500">Made with ❤️ by the GDC Media Team</p>
-          <p class="mt-5 text-zinc-500 underline"><a href="/robots.txt">/robots.txt</a></p>
+          <p class="mt-5 text-zinc-500 underline"><a href="/privacy">Privacy Policy</a></p>
+          <p class="text-zinc-500 underline"><a href="/robots.txt">/robots.txt</a></p>
           <p class="text-zinc-500 underline"><a href="/humans.txt">/humans.txt</a></p>
           <p class="text-zinc-500 underline"><a href="/security.txt">/security.txt</a></p>
         </div>
