@@ -105,12 +105,27 @@ const formatDate = (date) => {
   return new Date(date).toLocaleDateString(undefined, options);
 };
 
-const iso1806ToTime = (iso) => {
-  // Timestamp is already in the right timezone, so we need to remove the Z
-  const localTime = new Date(iso.replace("Z", ""));
-  return localTime.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+const iso1806ToTime = (isoTimestamp) => {
+  // Create a Date object from the ISO timestamp
+  const utcDate = new Date(isoTimestamp);
+
+  // Get UTC hours
+  const utcHours = utcDate.getUTCHours();
+
+  // Check if the input is already in UAE time (+4)
+  const isUAE = (utcHours >= 0 && utcHours < 4) || (utcHours >= 8 && utcHours < 20); 
+
+  // If already in UAE time, return the original time
+  if (isUAE) {
+    const options = { hour: '2-digit', minute: '2-digit' };
+    return utcDate.toLocaleString('en-US', options); 
+  }
+
+  // Calculate UAE time if not already in UAE time zone
+  const uaeTime = new Date(utcDate.getTime() + (4 * 60 * 60 * 1000)); 
+
+  // Format the UAE date and time as hours:minutes with 2 digits each
+  const options = { hour: '2-digit', minute: '2-digit' };
+  return uaeTime.toLocaleString('en-US', options); 
 };
 </script>
