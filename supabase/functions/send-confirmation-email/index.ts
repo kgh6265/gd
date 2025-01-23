@@ -11,25 +11,17 @@ const formatDate = (date) => {
   });
 };
 
-const iso1806ToTime = (isoTimestamp) => {
+const iso8601ToTime = (isoTimestamp) => {
+  // Log the input ISO timestamp
+  console.log(isoTimestamp);
+
   // Create a Date object from the ISO timestamp
   const utcDate = new Date(isoTimestamp);
 
-  // Get UTC hours
-  const utcHours = utcDate.getUTCHours();
-
-  // Check if the input is already in UAE time (+4)
-  const isUAE =
-    (utcHours >= 0 && utcHours < 4) || (utcHours >= 8 && utcHours < 20);
-
-  // If already in UAE time, return the original time
-  if (isUAE) {
-    const options = { hour: "2-digit", minute: "2-digit" };
-    return utcDate.toLocaleString("en-US", options);
-  }
-
   // Calculate UAE time if not already in UAE time zone
   const uaeTime = new Date(utcDate.getTime() + 4 * 60 * 60 * 1000);
+
+  console.log(uaeTime);
 
   // Format the UAE date and time as hours:minutes with 2 digits each
   return uaeTime.toLocaleString("en-US", {
@@ -41,10 +33,6 @@ const iso1806ToTime = (isoTimestamp) => {
 const handler = async (_request: Request): Promise<Response> => {
   const json = await _request.json();
   const record = json.record;
-
-  console.log("INVOKED!");
-  console.log(record);
-  console.log(json);
 
   try {
     const supabaseClient = createClient(
@@ -66,13 +54,13 @@ const handler = async (_request: Request): Promise<Response> => {
       .not("published_at", "is", null)
       .single();
 
-    console.log("eventData", eventData);
-    console.error(error);
-
     const eventTitle = eventData?.title;
     const eventDescription = eventData?.description;
     const eventDate = eventData?.date;
     const eventLocation = eventData?.location || "TBA";
+
+    console.log(eventDate);
+    console.log(iso8601ToTime(eventDate));
 
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -256,7 +244,7 @@ const handler = async (_request: Request): Promise<Response> => {
                           </tr>
                           <tr>
                             <td style="padding: 5px 0px"><b>Time</b></td>
-                            <td style="padding: 5px 0px">${iso1806ToTime(
+                            <td style="padding: 5px 0px">${iso8601ToTime(
                               eventDate
                             )}</td>
                           </tr>

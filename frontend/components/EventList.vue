@@ -43,7 +43,7 @@
         <div
           class="w-2/5 xl:w-1/5 text-sm lg:text-lg text-left self-start text-zinc-300"
         >
-          {{ formatDate(event.date) }}<br />{{ iso1806ToTime(event.date)
+          {{ formatDate(event.date) }}<br />{{ iso8601ToTime(event.date)
           }}<br /><span v-if="event.location">{{ event.location }}</span>
         </div>
         <div class="w-3/5 xl:w-4/5">
@@ -79,7 +79,7 @@ const formatDate = (date) => {
   return new Date(date).toLocaleDateString(undefined, options);
 };
 
-const iso1806ToTime = (isoTimestamp) => {
+const iso8601ToTime = (isoTimestamp) => {
   // Create a Date object from the ISO timestamp
   const utcDate = new Date(isoTimestamp);
 

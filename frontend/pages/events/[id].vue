@@ -143,7 +143,7 @@
           }}</span>
           registrations
         </p>
-        <table class="mt-10 w-full">
+        <table class="mt-10 w-full" id="regs">
           <thead>
             <tr
               class="text-zinc-300 border-b border-zinc-500 py-4 text-sm lg:text-lg"
@@ -213,18 +213,50 @@ const formatDate = (date) => {
   return new Date(date).toLocaleDateString(undefined, options);
 };
 
-const iso8601ToTime = (iso) => {
-  // Timestamp is already in the right timezone, so we need to remove the Z
-  const localTime = new Date(iso.replace("Z", ""));
-  return localTime.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+const iso8601ToTime = (isoTimestamp) => {
+  // Create a Date object from the ISO timestamp
+  const utcDate = new Date(isoTimestamp);
+
+  // Get UTC hours
+  const utcHours = utcDate.getUTCHours();
+
+  // Check if the input is already in UAE time (+4)
+  const isUAE = (utcHours >= 0 && utcHours < 4) || (utcHours >= 8 && utcHours < 20); 
+
+  // If already in UAE time, return the original time
+  if (isUAE) {
+    const options = { hour: '2-digit', minute: '2-digit' };
+    return utcDate.toLocaleString('en-US', options); 
+  }
+
+  // Calculate UAE time if not already in UAE time zone
+  const uaeTime = new Date(utcDate.getTime() + (4 * 60 * 60 * 1000)); 
+
+  // Format the UAE date and time as hours:minutes with 2 digits each
+  const options = { hour: '2-digit', minute: '2-digit' };
+  return uaeTime.toLocaleString('en-US', options); 
 };
 
-const iso8601ToTimestamp = (iso) => {
-  return new Date(iso).getTime();
-};
+function copyTableToClipboard(tableId) {
+  const table = document.getElementById(tableId);
+
+  if (!table) {
+    console.error(`Table with ID "${tableId}" not found.`);
+    return;
+  }
+
+  // Create a temporary textarea element
+  const tempTextArea = document.createElement('textarea');
+  tempTextArea.value = table.outerHTML; // Copy the entire table HTML
+  document.body.appendChild(tempTextArea);
+
+  // Select and copy the text
+  tempTextArea.select();
+  document.execCommand('copy');
+
+  // Remove the temporary textarea
+  document.body.removeChild(tempTextArea);
+}
 
 // Get event details
 const { data: event } = await useAsyncData("event", async () => {
