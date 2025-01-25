@@ -126,24 +126,116 @@
         </div>
       </Transition>
     </div>
-    <div
-      class="all-registrations max-w-[800px]"
-      v-if="showAllRegistrations === true"
-    >
+    <div class="all-registrations" v-if="showAllRegistrations === true">
       <div
         class="mt-20 w-full h-px bg-gradient-to-r from-zinc-900 via-zinc-600 to-zinc-900"
       ></div>
-      <h3 class="mt-20 text-3xl lg:text-4xl">View registrations</h3>
+      <h2 class="mt-20 mb-20 text-3xl lg:text-4xl">All registrations</h2>
       <!-- create a table for all registrations with avatar url, name, email -->
-      <div>
+      <div class="mt-20" v-if="allRegistrations === null">
+        <p class="mt-5 text-8xl lg:text-9xl text-zinc-500">( ͡° ʖ̯ ͡°)</p>
+        <p class="mt-2 ml-[20px] text-lg lg:text-xl text-zinc-500 italic">
+          No registrations yet! What are you waiting for, share the word! 📢
+        </p>
+      </div>
+      <div v-else>
         <!-- number of registrations -->
-        <p class="text-lg lg:text-lg mt-10 text-zinc-300">
-          <span class="text-7xl font-black text-white">{{
+        <p class="text-lg lg:text-lg mt-10 text-zinc-300 font-bold">
+          Registrations <br />
+          <span class="text-5xl lg:text-9xl ml-[-5px] font-black text-white">{{
             allRegistrations.length
           }}</span>
-          registrations
+          
         </p>
-        <table class="mt-10 w-full" id="regs">
+
+        <div class="max-w-[800px] mt-20">
+          <Bar :options="{ responsive: true }" :data="chartData" />
+        </div>
+
+        <div class="options mt-20 flex justify-end gap-3 flex-wrap">
+          <UButton
+            color="purple"
+            variant="outline"
+            icon="i-heroicons-clipboard-document"
+            @click="copyEmailString()"
+            label="Copy emails"
+            :disabled="selectedRegistrations.length === 0"
+          />
+          <UButton
+            color="purple"
+            variant="outline"
+            icon="i-heroicons-envelope"
+            @click="sendEmails()"
+            label="Send emails"
+            :disabled="selectedRegistrations.length === 0"
+          />
+          <UButton
+            color="purple"
+            variant="solid"
+            icon="i-heroicons-arrow-path-rounded-square-solid"
+            @click="getAllRegistrations()"
+            label="Refresh"
+            :loading="isRefreshing"
+          />
+        </div>
+
+        <UTable
+          class="mt-4 border-t border-zinc-700 pt-b"
+          v-model="selectedRegistrations"
+          :columns="[
+            {
+              key: 'id',
+              label: 'ID',
+            },
+            {
+              key: 'name',
+              label: 'Name',
+            },
+            {
+              key: 'email',
+              label: 'Email',
+            },
+            {
+              key: 'Registered on',
+              label: 'Registered on',
+            },
+            {
+              key: 'User ID',
+              label: 'User ID',
+            },
+            {
+              key: 'actions',
+            },
+          ]"
+          :rows="allRegistrations"
+          :ui="{
+            tr: {
+              selected: 'bg-purple-300 dark:purple-300',
+            },
+            th: {
+              color: 'text-zinc-300 dark:text-zinc-300',
+            },
+            td: {
+              color: 'text-white dark:text-white',
+            },
+            checkbox: 'accent-purple-300 dark:accent-purple-300',
+            default: {
+              checkbox: {
+                color: 'purple',
+              },
+            },
+          }"
+        >
+          <template #actions-data="{ row }">
+            <UButton
+              color="white"
+              variant="ghost"
+              icon="i-heroicons-envelope"
+              @click="sendEmail(row.email)"
+            />
+          </template>
+        </UTable>
+        <!-- <table class="mt-10 w-full" id="regs">
           <thead>
             <tr
               class="text-zinc-300 border-b border-zinc-500 py-4 text-sm lg:text-lg"
@@ -182,9 +274,14 @@
               </td>
             </tr>
           </tbody>
-        </table>
-        <p class="text-right text-sm lg:text-sm mt-2 text-zinc-300">
-          Showing {{ allRegistrations.length }} record(s)
+        </table> -->
+        <p
+          class="text-right text-sm lg:text-sm mt-2 text-zinc-300 border-t border-zinc-700 pt-2"
+        >
+          <span v-if="selectedRegistrations.length > 0">
+            Selected {{ selectedRegistrations.length }} record(s)
+          </span>
+          <span v-else> Showing {{ allRegistrations.length }} record(s) </span>
         </p>
       </div>
     </div>
@@ -192,10 +289,14 @@
 </template>
 
 <script setup>
+// Import ChartJS
+import { Bar } from "vue-chartjs";
+
 // Get route event ID info
 const route = useRoute();
 const eventId = route.params.id;
 const supabase = useSupabaseClient();
+const toast = useToast();
 
 const user = ref(null);
 const showRegistration = ref(false);
@@ -206,7 +307,30 @@ const registrationWording = ref("been succesfully");
 const error = ref(null);
 const showAllRegistrations = ref(false);
 const allRegistrations = ref(null);
-const clipboardText = ref(null);
+const selectedRegistrations = ref([]);
+const isRefreshing = ref(false);
+const chartData = ref({});
+
+const sendEmail = (email) => {
+  window.open(`mailto:${email}`);
+};
+
+const copyEmailString = () => {
+  const emails = selectedRegistrations.value.map(
+    (registration) => registration.email
+  );
+  const emailString = emails.join(", ");
+  navigator.clipboard.writeText(emailString);
+  toast.add({ title: "Copied emails to clipboard!" });
+};
+
+const sendEmails = () => {
+  const emails = selectedRegistrations.value.map(
+    (registration) => registration.email
+  );
+  const emailString = emails.join(", ");
+  window.open(`mailto:?subject=${event.value.title}&bcc=${emailString}`);
+};
 
 const formatDate = (date) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
@@ -221,20 +345,21 @@ const iso8601ToTime = (isoTimestamp) => {
   const utcHours = utcDate.getUTCHours();
 
   // Check if the input is already in UAE time (+4)
-  const isUAE = (utcHours >= 0 && utcHours < 4) || (utcHours >= 8 && utcHours < 20); 
+  const isUAE =
+    (utcHours >= 0 && utcHours < 4) || (utcHours >= 8 && utcHours < 20);
 
   // If already in UAE time, return the original time
   if (isUAE) {
-    const options = { hour: '2-digit', minute: '2-digit' };
-    return utcDate.toLocaleString('en-US', options); 
+    const options = { hour: "2-digit", minute: "2-digit" };
+    return utcDate.toLocaleString("en-US", options);
   }
 
   // Calculate UAE time if not already in UAE time zone
-  const uaeTime = new Date(utcDate.getTime() + (4 * 60 * 60 * 1000)); 
+  const uaeTime = new Date(utcDate.getTime() + 4 * 60 * 60 * 1000);
 
   // Format the UAE date and time as hours:minutes with 2 digits each
-  const options = { hour: '2-digit', minute: '2-digit' };
-  return uaeTime.toLocaleString('en-US', options); 
+  const options = { hour: "2-digit", minute: "2-digit" };
+  return uaeTime.toLocaleString("en-US", options);
 };
 
 function copyTableToClipboard(tableId) {
@@ -246,13 +371,13 @@ function copyTableToClipboard(tableId) {
   }
 
   // Create a temporary textarea element
-  const tempTextArea = document.createElement('textarea');
+  const tempTextArea = document.createElement("textarea");
   tempTextArea.value = table.outerHTML; // Copy the entire table HTML
   document.body.appendChild(tempTextArea);
 
   // Select and copy the text
   tempTextArea.select();
-  document.execCommand('copy');
+  document.execCommand("copy");
 
   // Remove the temporary textarea
   document.body.removeChild(tempTextArea);
@@ -290,7 +415,10 @@ const register = async () => {
   // Get the user
   const supabaseUser = useSupabaseUser();
   if (!supabaseUser.value) {
-    await navigateTo({ name: "login", query: { redirect: `/events/${eventId}` } });
+    await navigateTo({
+      name: "login",
+      query: { redirect: `/events/${eventId}` },
+    });
   }
 
   // Check if the user is already registered
@@ -363,46 +491,26 @@ const confirmRegistration = async () => {
 // 3. Fetch the staff members and check if the current user is in the list based on email
 // 4. If the user is in the list, show the registrations
 
-// Get the user
-const supabaseUser = useSupabaseUser();
-if (supabaseUser.value) {
-  user.value = supabaseUser.value;
+const getAllRegistrations = async () => {
+  // Set refreshing to true
+  isRefreshing.value = true;
 
-  const { data: staffMembers } = await useAsyncData(
-    "staffMembers",
-    async () => {
-      const { data, error } = await supabase
-        .from("staff_members")
-        .select("*")
-        .eq("email", user.value.email);
+  // Get the user
+  const supabaseUser = useSupabaseUser();
+  if (supabaseUser.value) {
+    user.value = supabaseUser.value;
 
-      if (error) {
-        console.error(error);
-        return {};
-      } else {
-        return data;
-      }
-    }
-  );
-
-  if (
-    staffMembers.value &&
-    staffMembers.value !== null &&
-    staffMembers.value.length > 0
-  ) {
-    showAllRegistrations.value = true;
-
-    // Get the whole event_registrations, only accessible to staff
-    const { data: registrations } = await useAsyncData(
-      "registrations",
+    const { data: staffMembers } = await useAsyncData(
+      "staffMembers",
       async () => {
         const { data, error } = await supabase
-          .from("event_registrations")
+          .from("staff_members")
           .select("*")
-          .eq("event_id", eventId);
+          .eq("email", user.value.email);
 
         if (error) {
           console.error(error);
+          isRefreshing.value = false;
           return {};
         } else {
           return data;
@@ -410,9 +518,70 @@ if (supabaseUser.value) {
       }
     );
 
-    allRegistrations.value = registrations.value;
+    if (
+      staffMembers.value &&
+      staffMembers.value !== null &&
+      staffMembers.value.length > 0
+    ) {
+      showAllRegistrations.value = true;
+
+      // Get the whole event_registrations, only accessible to staff
+      const { data: registrations } = await useAsyncData(
+        "registrations",
+        async () => {
+          const { data, error } = await supabase
+            .from("event_registrations")
+            .select("*")
+            .eq("event_id", eventId);
+
+          if (error) {
+            console.error(error);
+            return {};
+          } else {
+            return data;
+          }
+        }
+      );
+
+      // Replace the title fields with appropriate fields
+      allRegistrations.value = registrations.value.map((registration) => {
+        return {
+          id: registration.id,
+          name: registration.name,
+          email: registration.email,
+          "Registered on": `${formatDate(
+            registration.created_at
+          )} ${iso8601ToTime(registration.created_at)}`,
+          "User ID": registration.user_id,
+        };
+      });
+
+      // Create a chart data object based on the no of registrations per day
+      const registrationsPerDay = registrations.value.reduce((acc, curr) => {
+        const date = new Date(curr.created_at).toLocaleDateString();
+        acc[date] = acc[date] ? acc[date] + 1 : 1;
+        return acc;
+      }, {});
+
+      chartData.value = {
+        labels: Object.keys(registrationsPerDay),
+        datasets: [
+          {
+            label: "Registrations",
+            backgroundColor: "#d0b7ff",
+            data: Object.values(registrationsPerDay),
+          },
+        ],
+      };
+    }
+
+    // Stop refreshing visual indicator
+    isRefreshing.value = false;
   }
-}
+};
+
+// Fetch all registrations
+getAllRegistrations();
 </script>
 
 <style scoped>

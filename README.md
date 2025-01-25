@@ -12,6 +12,7 @@ Todo
 - [X] Link to website submissions
 - [ ] Switch to Google Map alternative
 - [ ] Convert directly to UTC+4
+- [ ] Configure primary colors
 
 Security bugs
 
