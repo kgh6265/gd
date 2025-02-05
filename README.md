@@ -1,4 +1,11 @@
-Todo
+<img src="frontend/public/logo-inverse.png" width="100" height="100">
+
+If you're able to read this top-secret codebase, then congratulations! You've been given access to the most horrendous collaboration of code and microservices to ever exist in the history of open-soure software. Fear not, this README details everything there is to know about this project.
+
+
+
+
+### Todo
 
 - [X] Redirect cookies
 - [ ] Save to calendar

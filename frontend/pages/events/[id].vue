@@ -49,7 +49,7 @@
         <p class="text-xl lg:text-2xl text-white" v-if="event.location">
           {{ event.location }}
         </p>
-        <p class="text-sm mt-20">
+        <p class="text-sm mt-20" v-if="event.allow_registration === true">
           <span class="text-zinc-500"
             >You will have to login with your RIT account</span
           >
@@ -145,7 +145,6 @@
           <span class="text-5xl lg:text-9xl ml-[-5px] font-black text-white">{{
             allRegistrations.length
           }}</span>
-          
         </p>
 
         <div class="max-w-[800px] mt-20">
