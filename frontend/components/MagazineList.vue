@@ -24,7 +24,7 @@
       :key="magazine.issue"
       class="hover:scale-110 transition-transform duration-200 w-[47%] lg:w-[32%]"
     >
-      <a :href="magazine.url" target="_blank" rel="noopener noreferrer">
+      <a :href="`/magazines/${magazine.season.toLowerCase().split(' ').join('')}-${magazine.issue}`" target="_blank" rel="noopener noreferrer">
         <img
           :src="magazine.cover.url"
           :alt="magazine.title + ' Issue #' + magazine.issue"
