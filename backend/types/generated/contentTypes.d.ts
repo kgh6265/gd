@@ -557,7 +557,9 @@ export interface ApiMagazineMagazine extends Struct.CollectionTypeSchema {
     issue: Schema.Attribute.String;
     url: Schema.Attribute.String;
     cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    season: Schema.Attribute.Enumeration<['Spring 2024', 'Fall 2024']>;
+    season: Schema.Attribute.Enumeration<
+      ['Spring 2024', 'Fall 2024', 'Spring 2025']
+    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

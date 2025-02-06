@@ -36,7 +36,8 @@
       "type": "enumeration",
       "enum": [
         "Spring 2024",
-        "Fall 2024"
+        "Fall 2024",
+        "Spring 2025"
       ]
     }
   }
