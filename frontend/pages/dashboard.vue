@@ -1,5 +1,5 @@
 <template>
-  <div id="dashboard" class="p-14 md:p-20 lg:p-40 max-w-[1600px] m-auto">
+  <div id="dashboard" class="p-10 md:p-20 lg:p-40 max-w-[1600px] m-auto">
     <h1 class="text-5xl lg:text-6xl mb-10">Dashboard</h1>
     <!-- <p class="text-xl lg:text-2xl max-w-xl">View your past and upcoming registered events.</p> -->
     <div class="user">

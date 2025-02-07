@@ -234,46 +234,6 @@
             />
           </template>
         </UTable>
-        <!-- <table class="mt-10 w-full" id="regs">
-          <thead>
-            <tr
-              class="text-zinc-300 border-b border-zinc-500 py-4 text-sm lg:text-lg"
-            >
-              <th class="text-left py-2"></th>
-              <th class="text-left py-2">Name</th>
-              <th class="text-left py-2">Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            <div v-if="allRegistrations.length === 0">
-              <p class="mt-5 text-8xl lg:text-9xl text-zinc-500">( ͡° ʖ̯ ͡°)</p>
-              <p class="mt-2 ml-[20px] text-lg lg:text-xl text-zinc-500 italic">
-                No registrations yet! What are you waiting for, share the word!
-                📢
-              </p>
-            </div>
-            <tr
-              v-for="registration in allRegistrations"
-              :key="registration.id"
-              class="border-b border-zinc-500 text-sm lg:text-lg"
-            >
-              <td>
-                <img
-                  :src="registration.avatar_url"
-                  alt="Avatar"
-                  class="w-10 h-10 rounded-full hidden md:block lg:block"
-                />
-              </td>
-              <td class="py-4">{{ registration.name }}</td>
-              <td class="py-4" @click="useCopyToClipboard(registration.email)">
-                {{ registration.email }}
-              </td>
-              <td class="py-4">
-                <a :href="'mailto:' + registration.email">Send email</a>
-              </td>
-            </tr>
-          </tbody>
-        </table> -->
         <p
           class="text-right text-sm lg:text-sm mt-2 text-zinc-300 border-t border-zinc-700 pt-2"
         >
@@ -301,7 +261,6 @@ const user = ref(null);
 const showRegistration = ref(false);
 const isConfirmed = ref(false);
 const isRegistering = ref(false);
-const phone = ref(null);
 const registrationWording = ref("been succesfully");
 const error = ref(null);
 const showAllRegistrations = ref(false);
@@ -400,14 +359,11 @@ const { data: event } = await useAsyncData("event", async () => {
 });
 
 // Add page metadata
-useHead({
+useSeoMeta({
   title: event.value ? event.value.title : "Event",
-  meta: [
-    {
-      name: "description",
-      content: event.value ? event.value.description : "Event",
-    },
-  ],
+  description: event.value ? event.value.description : "Event",
+  ogTitle: event.value ? event.value.title : "Event",
+  ogDescription: event.value ? event.value.description : "Event",
 });
 
 const register = async () => {
@@ -489,7 +445,6 @@ const confirmRegistration = async () => {
 // 2. Only accessible to users with the role of staff
 // 3. Fetch the staff members and check if the current user is in the list based on email
 // 4. If the user is in the list, show the registrations
-
 const getAllRegistrations = async () => {
   // Set refreshing to true
   isRefreshing.value = true;
@@ -517,6 +472,9 @@ const getAllRegistrations = async () => {
       }
     );
 
+    // This is acc dumb
+    // Because !staffMembers.value checks for all of these
+    // But I have trust issues
     if (
       staffMembers.value &&
       staffMembers.value !== null &&

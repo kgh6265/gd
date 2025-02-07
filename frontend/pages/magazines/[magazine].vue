@@ -1,6 +1,7 @@
 <template>
-  <div id="magazine" class="p-14 md:p-20 lg:p-40 max-w-[1600px] m-auto">
-    If you haven't been redirected, click <a href="{{ magazine.value.url }}">here</a>.
+  <div id="magazine" class="p-10 md:p-20 lg:p-40 max-w-[1600px] m-auto">
+    If you haven't been redirected, click
+    <a href="{{ magazine.value.url }}">here</a>.
   </div>
 </template>
 
@@ -27,8 +28,19 @@ const { data: magazine } = await useAsyncData("magazine", async () => {
   return data;
 });
 
+if (!magazine) {
+  await navigateTo("/magazines");
+}
+
+useSeoMeta({
+  title: `${semester} Issue ${issue} - ${semester}`,
+  ogTitle: `${semester} Issue ${issue} - ${semester}`,
+  description: `Read Issue #${issue} of Palette Perspective's ${semester} magazine.`,
+  ogDescription: `Read Issue #${issue} of Palette Perspective's ${semester} magazine.`,
+});
+
 await navigateTo(magazine.value.url, {
-  external: true
+  external: true,
 });
 </script>
 
