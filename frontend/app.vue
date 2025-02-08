@@ -2,7 +2,6 @@
   <!-- HAND WRITTEN CODE THROUGH BLOOD, SWEAT, AND TEARS BY LEE. 2025. -->
   <NuxtLayout>
     <div>
-      <NuxtLoadingIndicator color="#F76902" />
       <NuxtPage />
     </div>
     <UNotifications />

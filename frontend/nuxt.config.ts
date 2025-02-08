@@ -43,7 +43,8 @@ export default defineNuxtConfig({
       meta: [
         {
           name: "description",
-          content: "Graphic Design Club at RIT Dubai",
+          content:
+            "We are RIT Dubai's pioneering departmental club dedicated to igniting passion and harnessing the power of liberal arts among our students.",
         },
       ],
       link: [

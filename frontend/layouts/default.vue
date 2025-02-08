@@ -1,6 +1,7 @@
 <template>
-  <Banner />
+  <NuxtLoadingIndicator color="#F76902" />
   <Nav />
+  <Banner />
   <div>
     <slot />
   </div>
@@ -131,7 +132,7 @@ h6 {
 }
 
 h1 {
-  color: #F76902;
+  color: #f76902;
 }
 
 .page-fade-enter-active,
