@@ -17,55 +17,85 @@
       <h2 class="text-4xl lg:text-5xl mb-10 text-[#d0b7ff] font-bold">
         {{ event.title }}
       </h2>
-      <p class="text-xl lg:text-2xl mb-10 max-w-[800px] text-white">
-        {{ event.description }}
-      </p>
       <div class="event-details">
-        <h3 class="text-2xl lg:text-2xl text-zinc-300 font-bold hidden">Date</h3>
-        <UBadge class="text-lg lg:text-lg text-zinc-300 mb-2" variant="subtle">Date</UBadge>
+        <div class="block lg:flex justify-between">
+          <div>
+            <p class="text-xl lg:text-2xl mb-10 max-w-[600px] text-white">
+              {{ event.description }}
+            </p>
+            <h3 class="text-2xl lg:text-2xl text-zinc-300 font-bold hidden">
+              Date
+            </h3>
+            <UBadge
+              class="text-lg lg:text-lg text-zinc-300 mb-2"
+              variant="subtle"
+              icon="i-mdi-calendar"
+              >Date</UBadge
+            >
 
-        <p class="text-xl lg:text-2xl text-white font-semibold">
-          {{ formatDate(event.date) }}
-        </p>
+            <p class="text-xl lg:text-2xl text-white font-semibold">
+              {{ formatDate(event.date) }}
+            </p>
 
-        <h3 class="text-2xl lg:text-2xl text-zinc-300 font-bold mt-10 hidden">Time</h3>
-        <UBadge class="text-lg lg:text-lg text-zinc-300 mt-10 mb-2" variant="subtle">Time</UBadge>
+            <h3
+              class="text-2xl lg:text-2xl text-zinc-300 font-bold mt-7 hidden"
+            >
+              Time
+            </h3>
+            <UBadge
+              class="text-lg lg:text-lg text-zinc-300 mt-7 mb-2"
+              variant="subtle"
+              icon="i-material-symbols-calendar-clock"
+              >Time</UBadge
+            >
 
-        <p class="text-xl lg:text-2xl text-white font-semibold">
-          {{ iso8601ToTime(event.date) }}
-        </p>
+            <p class="text-xl lg:text-2xl text-white font-semibold">
+              {{ iso8601ToTime(event.date) }}
+            </p>
 
-        <!-- <ClientOnly>
-          <AddToCalendar
-            :name="event.title"
-            :location="event.location"
-            :details="event.description"
-            :startsAt="event.date"
-          />
-        </ClientOnly> -->
-
-        <h3
-          class="text-2xl lg:text-2xl text-zinc-300 font-semibold mt-10 hidden"
-          v-if="event.location"
-        >
-          Location
-        </h3>
-        <UBadge class="text-lg lg:text-lg text-zinc-300 mt-10 mb-2" variant="subtle">Location</UBadge>
-        <p class="text-xl lg:text-2xl text-white font-semibold" v-if="event.location">
-          {{ event.location }}
-        </p>
-        <p class="text-sm mt-20" v-if="event.allow_registration === true">
-          <span class="text-zinc-500"
-            >You will have to login with your RIT account</span
-          >
-        </p>
-        <button
-          v-if="event.allow_registration === true"
-          class="lg:text-xl mt-2 w-fit text-black bg-[#d0b7ff] py-2 px-4 rounded-lg text-lg"
-          @click="register"
-        >
-          Register
-        </button>
+            <h3
+              class="text-2xl lg:text-2xl text-zinc-300 font-semibold mt-7 hidden"
+              v-if="event.location"
+            >
+              Location
+            </h3>
+            <UBadge
+              class="text-lg lg:text-lg text-zinc-300 mt-7 mb-2"
+              variant="subtle"
+              icon="i-material-symbols-location-on"
+              v-if="event.location"
+              >Location</UBadge
+            >
+            <p
+              class="text-xl lg:text-2xl text-white font-semibold"
+              v-if="event.location"
+            >
+              {{ event.location }}
+            </p>
+            <p class="text-sm mt-20" v-if="event.allow_registration === true">
+              <span class="text-zinc-500"
+                >You will have to login with your RIT account</span
+              >
+            </p>
+            <button
+              v-if="event.allow_registration === true"
+              class="lg:text-xl mt-2 w-fit text-black bg-[#d0b7ff] py-2 px-4 rounded-lg text-lg"
+              @click="register"
+            >
+              Register
+            </button>
+          </div>
+          <div>
+            <ClientOnly>
+              <AddToCalendar
+                :name="event.title"
+                :location="event.location"
+                :details="event.description"
+                :startsAt="event.date"
+              />
+            </ClientOnly>
+          </div>
+        </div>
       </div>
       <Transition name="fade">
         <div
@@ -174,6 +204,14 @@
             :disabled="selectedRegistrations.length === 0"
           />
           <UButton
+            color="green"
+            variant="outline"
+            icon="i-material-symbols-add-to-drive"
+            @click="exportRegistrations()"
+            label="Export to Sheets"
+            :loading="isExporting"
+          />
+          <UButton
             color="purple"
             variant="solid"
             icon="i-heroicons-arrow-path-rounded-square-solid"
@@ -192,11 +230,11 @@
               label: 'ID',
             },
             {
-              key: 'name',
+              key: 'Name',
               label: 'Name',
             },
             {
-              key: 'email',
+              key: 'Email',
               label: 'Email',
             },
             {
@@ -273,6 +311,7 @@ const allRegistrations = ref(null);
 const selectedRegistrations = ref([]);
 const isRefreshing = ref(false);
 const chartData = ref({});
+const isExporting = ref(false);
 
 const sendEmail = (email) => {
   window.open(`mailto:${email}`);
@@ -506,17 +545,22 @@ const getAllRegistrations = async () => {
       );
 
       // Replace the title fields with appropriate fields
-      allRegistrations.value = registrations.value.map((registration) => {
-        return {
-          id: registration.id,
-          name: registration.name,
-          email: registration.email,
-          "Registered on": `${formatDate(
-            registration.created_at
-          )} ${iso8601ToTime(registration.created_at)}`,
-          "User ID": registration.user_id,
-        };
-      });
+      const humanReadableRegistrations = registrations.value.map(
+        (registration) => {
+          return {
+            id: registration.id,
+            Name: registration.name,
+            Email: registration.email,
+            "Registered on": `${formatDate(
+              registration.created_at
+            )} ${iso8601ToTime(registration.created_at)}`,
+            "User ID": registration.user_id,
+          };
+        }
+      );
+
+      // Update the view
+      allRegistrations.value = humanReadableRegistrations;
 
       // Create a chart data object based on the no of registrations per day
       const registrationsPerDay = registrations.value.reduce((acc, curr) => {
@@ -544,6 +588,50 @@ const getAllRegistrations = async () => {
 
 // Fetch all registrations
 getAllRegistrations();
+
+const exportRegistrations = async () => {
+  isExporting.value = true;
+
+  const eventName = event.value.title;
+  const eventRegistrations = allRegistrations.value;
+
+  // Cookies for auth and whatnot
+  const headers = useRequestHeaders(["cookie"]);
+
+  const sheet = await $fetch("/api/export", {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+      eventName,
+      eventRegistrations,
+    }),
+  });
+
+  isExporting.value = false;
+
+  if (sheet.status !== 200) {
+    console.error(sheet);
+    toast.add({ title: "Something went wrong, try again?", color: "red" });
+    return;
+  } else {
+    toast.add({
+      title: "Exported to Google Sheets!",
+      color: "green",
+      click: () => openSheet(sheet),
+    });
+
+    // Copy link to clipboard
+    navigator.clipboard.writeText(sheet.url);
+
+    // Open link from response in a new tab
+    await navigateTo(sheet.url, {
+      external: true,
+      open: {
+        target: "_blank",
+      },
+    });
+  }
+};
 </script>
 
 <style scoped>

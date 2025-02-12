@@ -74,6 +74,9 @@
 <script setup>
 const props = defineProps(["events", "allowRegistration"]);
 
+// Sort events by date
+props.events.sort((a, b) => new Date(b.date) - new Date(a.date));
+
 const formatDate = (date) => {
   const options = { year: "numeric", month: "long", day: "numeric" };
   return new Date(date).toLocaleDateString(undefined, options);

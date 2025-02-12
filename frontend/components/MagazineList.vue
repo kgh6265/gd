@@ -24,14 +24,14 @@
       :key="magazine.issue"
       class="hover:scale-110 transition-transform duration-200 w-[47%] lg:w-[32%]"
     >
-      <a :href="`/magazines/${magazine.season.toLowerCase().split(' ').join('')}-${magazine.issue}`" target="_blank" rel="noopener noreferrer">
+      <NuxtLink :to="`/magazines/${magazine.season.toLowerCase().split(' ').join('')}-${magazine.issue}`">
         <img
           :src="magazine.cover.url"
           :alt="magazine.title + ' Issue #' + magazine.issue"
           class="rounded-xl h-auto w-full shadow-md"
           loading="lazy"
         />
-      </a>
+      </NuxtLink>
       <p class="text-xl lg:text-2xl text-right mt-2 text-zinc-300">
         Issue #{{ magazine.issue }}
       </p>

@@ -12,5 +12,8 @@
   "devDependencies": {
     "@iconify-json/mdi": "^1.2.2",
     "@vercel/node": "^3.2.23"
+  },
+  "dependencies": {
+    "googleapis": "^144.0.0"
   }
 }

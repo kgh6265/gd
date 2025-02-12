@@ -1,22 +1,51 @@
 <template>
-  <ul>
-    <li>
-      <a :href="googleCalendarLink" target="_blank">Add to Google Calendar</a>
-    </li>
-    <li><a :href="outlookCalendarLink" target="_blank">Add to Outlook</a></li>
-    <li>
-      <a :href="yahooCalendarLink" target="_blank">Add to Yahoo! Calendar</a>
-    </li>
-    <li>
-      <a :href="appleCalendarLink" download="event.ics"
-        >Add to Apple Calendar</a
+  <ul class="mt-5 lg:mt-0">
+    <li class="mb-2">
+      <a :href="googleCalendarLink" target="_blank"
+        ><UButton color="gray" icon="i-mynaui-brand-google-solid"
+          >Add to Google Calendar</UButton
+        ></a
       >
     </li>
-    <li><a :href="icsFileLink" download="event.ics">Download .ics File</a></li>
+    <li class="mb-2">
+      <a :href="outlookCalendarLink" target="_blank">
+        <UButton color="gray" icon="i-mdi-outlook">Add to Outlook</UButton></a
+      >
+    </li>
+    <li class="mb-2">
+      <a :href="yahooCalendarLink" target="_blank"
+        ><UButton color="gray" icon="i-mdi-yahoo"
+          >Add to Yahoo! Calendar</UButton
+        ></a
+      >
+    </li>
+    <li class="mb-2">
+      <a :href="office365CalendarLink" download="event.ics"
+        ><UButton color="gray" icon="i-hugeicons-office-365"
+          >Add to Office 365</UButton
+        ></a
+      >
+    </li>
+    <li class="mb-2">
+      <a :href="icsFileLink" download="event.ics"
+        ><UButton color="gray" icon="i-mdi-apple"
+          >Add to Apple Calendar</UButton
+        ></a
+      >
+    </li>
+    <li>
+      <a :href="icsFileLink" download="event.ics"
+        ><UButton color="gray" icon="i-mdi-download"
+          >Download .ics file</UButton
+        ></a
+      >
+    </li>
   </ul>
 </template>
 
 <script setup>
+import { google, outlook, office365, yahoo, ics } from "calendar-link";
+
 // Props
 const props = defineProps({
   name: { type: String, required: true },
@@ -30,75 +59,20 @@ const location = props.location;
 const details = props.details;
 const startsAt = props.startsAt;
 
-// Compute the end time (1 hour after startsAt)
-const endsAt = computed(() => {
-  
-
-  const startDate = new Date(startsAt);
-
-  if (isNaN(startDate.getTime())) {
-    console.error("Invalid startsAt format. Please use ISO 8601 format.");
-    return null; // Return null for invalid dates
-  }
-
-  // Add 1 hour directly
-  startDate.setHours(startDate.getHours() + 1);
-
-  // Return as a string in the same local timezone
-  return startDate.toISOString();
-});
-
-// Calendar Links
-const googleCalendarLink = computed(() => {
-  const start = encodeURIComponent(startsAt.replace(/-|:|\.\d{3}/g, ""));
-  const end = encodeURIComponent(endsAt.value.replace(/-|:|\.\d{3}/g, ""));
-  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-    name
-  )}&dates=${start}/${end}&details=${encodeURIComponent(
-    details
-  )}&location=${encodeURIComponent(location)}`;
-});
-
-const outlookCalendarLink = computed(() => {
-  const start = encodeURIComponent(startsAt.replace(/-|:|\.\d{3}/g, ""));
-  const end = encodeURIComponent(endsAt.value.replace(/-|:|\.\d{3}/g, ""));
-  return `https://outlook.live.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(
-    name
-  )}&startdt=${start}&enddt=${end}&body=${encodeURIComponent(
-    details
-  )}&location=${encodeURIComponent(location)}`;
-});
-
-const yahooCalendarLink = computed(() => {
-  const start = encodeURIComponent(startsAt.replace(/-|:|\.\d{3}/g, ""));
-  const end = encodeURIComponent(endsAt.value.replace(/-|:|\.\d{3}/g, ""));
-  return `https://calendar.yahoo.com/?v=60&title=${encodeURIComponent(
-    name
-  )}&st=${start}&et=${end}&desc=${encodeURIComponent(
-    details
-  )}&in_loc=${encodeURIComponent(location)}`;
-});
-
-const generateICS = () => {
-  return `BEGIN:VCALENDAR
-VERSION:2.0
-BEGIN:VEVENT
-SUMMARY:${name}
-DTSTART:${startsAt.replace(/-|:|\.\d{3}/g, "")}
-DTEND:${endsAt.value.replace(/-|:|\.\d{3}/g, "")}
-LOCATION:${location}
-DESCRIPTION:${details}
-END:VEVENT
-END:VCALENDAR`;
+// Set event as an object
+const event = {
+  title: name,
+  description: details,
+  start: startsAt + "Z",
+  location: location,
+  duration: [1, "hour"],
 };
 
-const appleCalendarLink = computed(() => {
-  return `data:text/calendar;charset=utf-8,${encodeURIComponent(
-    generateICS()
-  )}`;
-});
-
-const icsFileLink = appleCalendarLink; // Reuse Apple Calendar link for .ics file
+const googleCalendarLink = google(event);
+const outlookCalendarLink = outlook(event);
+const yahooCalendarLink = yahoo(event);
+const office365CalendarLink = office365(event);
+const icsFileLink = ics(event);
 </script>
 
 <style scoped>

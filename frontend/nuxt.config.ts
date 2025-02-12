@@ -26,10 +26,17 @@ export default defineNuxtConfig({
   },
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "@nuxtjs/tailwindcss", "@nuxtjs/supabase"],
+  modules: [
+    "@nuxt/ui",
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/supabase",
+    "nuxt-umami",
+  ],
   runtimeConfig: {
     strapiToken: process.env.STRAPI_TOKEN,
     strapiUrl: process.env.STRAPI_URL,
+    clientEmail: process.env.CLIENT_EMAIL,
+    privateKey: process.env.PRIVATE_KEY,
     public: {
       redirectUrl: process.env.REDIRECT_URL,
     },
@@ -59,13 +66,13 @@ export default defineNuxtConfig({
           href: "/humans.txt",
         },
       ],
-      script: [
-        {
-          src: "https://cloud.umami.is/script.js",
-          "data-website-id": "12db7138-696b-4c12-8911-16206a5142ef",
-          defer: true,
-        },
-      ],
+      // script: [
+      //   {
+      //     src: "https://cloud.umami.is/script.js",
+      //     "data-website-id": "12db7138-696b-4c12-8911-16206a5142ef",
+      //     defer: true,
+      //   },
+      // ],
     },
   },
   supabase: {
@@ -76,5 +83,10 @@ export default defineNuxtConfig({
       include: ["/dashboard"],
       cookieRedirect: true,
     },
+  },
+  umami: {
+    id: "12db7138-696b-4c12-8911-16206a5142ef",
+    host: "https://cloud.umami.is",
+    autoTrack: true,
   },
 });

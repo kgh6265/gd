@@ -26,18 +26,18 @@ Resend powers our automated emails from Supabase, which are triggered when users
 ### Todo
 
 - [X] Redirect cookies
-- [ ] Save to calendar
+- [X] Save to calendar
 - [X] Direct redirects to events, content, etc
 - [X] Dashboard for organizers
 - [X] Confirmation emails
 - [X] Page animations
-- [ ] Export to spreadsheet, copy participant emails etc etc
+- [X] Export to spreadsheet, copy participant emails etc etc
 - [X] 404 pages
 - [X] Analytics
 - [X] Link to website submissions
 - [ ] Switch to Google Map alternative
-- [ ] Convert directly to UTC+4
-- [ ] Configure primary colors
+- [X] Convert directly to UTC+4
+- [X] Configure primary colors
 
 Security bugs
 
