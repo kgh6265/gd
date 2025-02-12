@@ -615,9 +615,9 @@ const exportRegistrations = async () => {
     return;
   } else {
     toast.add({
-      title: "Exported to Google Sheets!",
+      title: "Exported to Google Sheets! Click to copy link.",
       color: "green",
-      click: () => openSheet(sheet),
+      click: () => navigator.clipboard.writeText(sheet.url),
     });
 
     // Copy link to clipboard
