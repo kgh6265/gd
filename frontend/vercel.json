@@ -9,5 +9,11 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/magazines/:slug/analytics",
+      "destination": "https://eu.umami.is/share/0Hf0pSsWTJhE0IBT/gdclub.ritdubai.ae?view=url&url=/magazines/:slug"
+    }
   ]
 }
