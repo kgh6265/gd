@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
   const auth = new google.auth.GoogleAuth({
     credentials: {
       client_email: email,
-      private_key: key,
+      private_key: key.replace(/\\n/g, "\n"),
     },
     scopes: SCOPES,
   });
