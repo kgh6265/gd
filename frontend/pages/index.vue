@@ -1,4 +1,5 @@
 <template>
+  <Linktree v-if="true" />
   <div class="h-full">
     <div
       id="main"

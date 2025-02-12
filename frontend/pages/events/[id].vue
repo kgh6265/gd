@@ -21,13 +21,17 @@
         {{ event.description }}
       </p>
       <div class="event-details">
-        <h3 class="text-2xl lg:text-2xl text-zinc-300 font-bold">Date</h3>
-        <p class="text-xl lg:text-2xl text-white">
+        <h3 class="text-2xl lg:text-2xl text-zinc-300 font-bold hidden">Date</h3>
+        <UBadge class="text-lg lg:text-lg text-zinc-300 mb-2" variant="subtle">Date</UBadge>
+
+        <p class="text-xl lg:text-2xl text-white font-semibold">
           {{ formatDate(event.date) }}
         </p>
 
-        <h3 class="text-2xl lg:text-2xl text-zinc-300 font-bold mt-10">Time</h3>
-        <p class="text-xl lg:text-2xl text-white">
+        <h3 class="text-2xl lg:text-2xl text-zinc-300 font-bold mt-10 hidden">Time</h3>
+        <UBadge class="text-lg lg:text-lg text-zinc-300 mt-10 mb-2" variant="subtle">Time</UBadge>
+
+        <p class="text-xl lg:text-2xl text-white font-semibold">
           {{ iso8601ToTime(event.date) }}
         </p>
 
@@ -41,12 +45,13 @@
         </ClientOnly> -->
 
         <h3
-          class="text-2xl lg:text-2xl text-zinc-300 font-bold mt-10"
+          class="text-2xl lg:text-2xl text-zinc-300 font-semibold mt-10 hidden"
           v-if="event.location"
         >
           Location
         </h3>
-        <p class="text-xl lg:text-2xl text-white" v-if="event.location">
+        <UBadge class="text-lg lg:text-lg text-zinc-300 mt-10 mb-2" variant="subtle">Location</UBadge>
+        <p class="text-xl lg:text-2xl text-white font-semibold" v-if="event.location">
           {{ event.location }}
         </p>
         <p class="text-sm mt-20" v-if="event.allow_registration === true">

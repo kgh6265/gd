@@ -7,11 +7,13 @@
       <div class="lg:flex justify-between items-start gap-30">
         <div>
           <!-- logo -->
-          <img
-            src="/logo-inverse-white.png"
-            alt="Graphic Design Club, RIT Dubai"
-            class="w-20 lg:w-28"
-          />
+          <NuxtLink to="/">
+            <img
+              src="/logo-inverse-white.png"
+              alt="Graphic Design Club, RIT Dubai"
+              class="w-20 lg:w-28"
+            />
+          </NuxtLink>
         </div>
         <div class="lg:mt-0 mt-20">
           <ul>
@@ -61,14 +63,14 @@
               <a
                 href="https://www.instagram.com/ritd_gdclub"
                 class="text-zinc-300 hover:text-white transition:colors duration-200 text-sm lg:text-lg"
-                >LinkedIn</a
+                >Instagram</a
               >
             </li>
             <li>
               <a
                 href="https://www.linkedin.com/company/ritd-graphic-design-club/posts/?feedView=all"
                 class="text-zinc-300 hover:text-white transition:colors duration-200 text-sm lg:text-lg"
-                >Instagram</a
+                >LinkedIn</a
               >
             </li>
             <!-- <li>

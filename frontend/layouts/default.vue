@@ -2,7 +2,7 @@
   <NuxtLoadingIndicator color="#F76902" />
   <Nav />
   <Banner />
-  <div>
+  <div class="mt-10 lg:mt-0">
     <slot />
   </div>
   <Footer />

@@ -10,7 +10,7 @@
           :alt="user?.user_metadata.full_name"
         ></div>
         <div class="ml-4">
-          <p class="text-3xl lg:text-4xl">
+          <p class="text-xl lg:text-4xl">
             Hi {{ user?.user_metadata.full_name }}!
           </p>
           <p class="text-xl lg:text-2xl text-zinc-300">{{ user?.email }}</p>
@@ -34,7 +34,7 @@
       </p>
     </div>
     <div
-      v-for="event in events"
+      v-for="event in events.slice().reverse()"
       :key="event.id"
       class="mt-10 flex items-center rounded-lg"
     >
@@ -43,14 +43,16 @@
       >
         {{ formatDate(event.date) }}<br />{{ iso8601ToTime(event.date)
         }}<br /><span v-if="event.location">{{ event.location }}</span>
+        <!-- show badge if date is in the future -->
       </div>
       <div class="w-3/5 xl:w-4/5">
         <p
           class="text-xl lg:text-2xl font-bold text-[#d0b7ff] transition-colors"
         >
-          <NuxtLink :to="`/events/${event.event_id}`">{{
+          <NuxtLink class="underline" :to="`/events/${event.event_id}`">{{
             event.title
           }}</NuxtLink>
+          &nbsp;<UBadge v-if="inTheFuture(event.date)">UPCOMING</UBadge><br />
         </p>
         <p class="text-sm lg:text-lg mt-2 max-w-xl">
           {{ event.description }}
@@ -71,6 +73,7 @@
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
 const events = ref(null);
+const inTheFuture = (date) => new Date(date) > new Date();
 
 const signOut = async () => {
   await navigateTo("/logout");
