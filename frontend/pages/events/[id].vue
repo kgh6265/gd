@@ -319,7 +319,7 @@ const sendEmail = (email) => {
 
 const copyEmailString = () => {
   const emails = selectedRegistrations.value.map(
-    (registration) => registration.email
+    (registration) => registration["Email"]
   );
   const emailString = emails.join(", ");
   navigator.clipboard.writeText(emailString);
