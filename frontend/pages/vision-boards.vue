@@ -9,11 +9,10 @@
         class="underline font-bold"
         >Women in Engineering Club</a
       >
-      hosted the the first event of the semester, the
+      hosted the first event of the semester, the
       <NuxtLink to="/events/vision-board-workshop" class="underline"
         >Vision Board Workshop</NuxtLink
-      >, where people designed their dreams, created visions, and shaped their
-      future. <br /><br />Check out the cool vision boards people made!
+      >, where where participants could design their dreams, create their vision, and shape their future with vision boards. <br /><br />Check out the cool vision boards people made!
     </span>
     <div>
       <div class="hover:scale-110 transition-transform duration-200">
@@ -66,10 +65,10 @@ definePageMeta({
 useSeoMeta({
   title: "Vision Boards",
   description:
-    "View the vision boards from the Vision Board Workshop, where the Graphic Design Club and the Women in Engineering Club hosted the the first event of the semester, and people designed their dreams, created visions, and shaped their future.",
+    "View the vision boards from Vision Board Workshop hosted by the Graphic Design Club and the Women in Engineering Club, where participants could design their dreams, create their vision, and shape their future with vision boards.",
   ogTitle: "Vision Boards",
   ogDescription:
-    "View the vision boards from the Vision Board Workshop, where the Graphic Design Club and the Women in Engineering Club hosted the the first event of the semester, and people designed their dreams, created visions, and shaped their future.",
+    "View the vision boards from Vision Board Workshop hosted by the Graphic Design Club and the Women in Engineering Club, where participants could design their dreams, create their vision, and shape their future with vision boards.",
   ogImage: "https://gdclub.ritdubai.ae/visionboards/cover.png",
 });
 </script>
