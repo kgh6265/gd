@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const props = defineProps(["error"]);
+import type { NuxtError } from '#app'
+
+const props = defineProps({
+  error: Object as () => NuxtError
+})
 </script>
 
 <template>
@@ -16,6 +20,7 @@ const props = defineProps(["error"]);
         <NuxtLink to="/" class="mt-20 text-2xl border-b hover:text-zinc-500 hover:border-zinc-500 transition:colors duration-200"
           >Go back home?</NuxtLink
         >
+        {{ error }}
       </div>
     </NuxtLayout>
   </div>

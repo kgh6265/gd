@@ -34,7 +34,9 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     strapiToken: process.env.STRAPI_TOKEN,
-    strapiUrl: process.env.STRAPI_URL,
+    strapiUrl: (
+      process.env.STRAPI_URL || "https://gd-strapi.onrender.com"
+    ).replace(/\/?$/, "/"),
     clientEmail: process.env.CLIENT_EMAIL,
     privateKey: process.env.PRIVATE_KEY,
     public: {

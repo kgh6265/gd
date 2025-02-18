@@ -39,16 +39,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "MagazineList",
-  props: {
-    magazines: {
-      type: Array,
-      required: true,
-    },
-  },
-};
+<script setup>
+const props = defineProps(["magazines"]);
 </script>
 
 <style scoped>
