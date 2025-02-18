@@ -12,7 +12,7 @@
       hosted the first event of the semester, the
       <NuxtLink to="/events/vision-board-workshop" class="underline"
         >Vision Board Workshop</NuxtLink
-      >, where where participants could design their dreams, create their vision, and shape their future with vision boards. <br /><br />Check out the cool vision boards people made!
+      >, where participants could design their dreams, create their vision, and shape their future with vision boards. <br /><br />Check out the cool vision boards people made!
     </span>
     <div>
       <div class="hover:scale-110 transition-transform duration-200">
