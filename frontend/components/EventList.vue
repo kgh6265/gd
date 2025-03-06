@@ -75,7 +75,11 @@
 const props = defineProps(["events", "allowRegistration"]);
 
 // Sort events by date
-props.events.sort((a, b) => new Date(b.date) - new Date(a.date));
+if (props.allowRegistration === true) {
+  props.events.sort((a, b) => new Date(a.date) - new Date(b.date));
+} else {
+  props.events.sort((a, b) => new Date(b.date) - new Date(a.date));
+}
 
 const formatDate = (date) => {
   const options = { year: "numeric", month: "long", day: "numeric" };

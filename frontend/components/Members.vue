@@ -13,11 +13,12 @@
           <template #header>
             <div class="flex items center">
               <div
+                v-if="member.avatar"
                 :style="{ backgroundImage: `url(${member.avatar.url})` }"
-                class="w-16 h-16 rounded-full bg-cover bg-top"
+                class="w-16 h-16 rounded-full bg-cover bg-top mr-4"
                 :alt="member.name"
               ></div>
-              <div class="ml-4">
+              <div>
                 <h4 class="text-xl lg:text-2xl">{{ member.name }}</h4>
                 <p class="text-sm lg:text-lg">{{ member.position }}</p>
               </div>
