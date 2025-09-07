@@ -50,7 +50,7 @@ export default defineEventHandler(async (event) => {
 
   // Folder ID in shared drive
   // const FOLDER_ID = "1zWKz_nNI3TCnMD6cDzbTI9Ldlh7-BSdw";
-  const FOLDER_ID = "1tNyY1gwp7fFqMukLQF9N_zzi5tt55tPG";
+  const FOLDER_ID = "1Zaa2KiQS_g_s-yBLxLPgWpMrRd0DaJnd";
 
   // File details, fetched from request body
   const fileMetaData = {
