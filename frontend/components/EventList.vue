@@ -47,22 +47,24 @@
           }}<br /><span v-if="event.location">{{ event.location }}</span>
         </div>
         <div class="w-3/5 xl:w-4/5">
-          <p
-            class="text-xl lg:text-2xl font-bold text-[#d0b7ff] transition-colors"
-          >
-            {{ event.title }}
-          </p>
+          <NuxtLink class="underline" :to="`/events/${event.eventId}`">
+            <p
+              class="text-xl lg:text-2xl font-bold text-[#d0b7ff] transition-colors"
+            >
+              {{ event.title }}
+            </p>
+          </NuxtLink>
           <p class="text-sm lg:text-lg mt-2 max-w-xl">
             {{ event.description }}
           </p>
           <p
-            v-if="
-              allowRegistration === true
-            "
+            v-if="allowRegistration === true"
             class="text-sm lg:text-lg mt-6 w-fit"
           >
-            <NuxtLink class="text-black bg-[#d0b7ff] py-2 px-4 rounded-lg"
-              :to="`/events/${event.eventId}`">More info</NuxtLink
+            <NuxtLink
+              class="text-black bg-[#d0b7ff] py-2 px-4 rounded-lg"
+              :to="`/events/${event.eventId}`"
+              >More info</NuxtLink
             >
           </p>
         </div>
@@ -94,20 +96,21 @@ const iso8601ToTime = (isoTimestamp) => {
   const utcHours = utcDate.getUTCHours();
 
   // Check if the input is already in UAE time (+4)
-  const isUAE = (utcHours >= 0 && utcHours < 4) || (utcHours >= 8 && utcHours < 20); 
+  const isUAE =
+    (utcHours >= 0 && utcHours < 4) || (utcHours >= 8 && utcHours < 20);
 
   // If already in UAE time, return the original time
   if (isUAE) {
-    const options = { hour: '2-digit', minute: '2-digit' };
-    return utcDate.toLocaleString('en-US', options); 
+    const options = { hour: "2-digit", minute: "2-digit" };
+    return utcDate.toLocaleString("en-US", options);
   }
 
   // Calculate UAE time if not already in UAE time zone
-  const uaeTime = new Date(utcDate.getTime() + (4 * 60 * 60 * 1000)); 
+  const uaeTime = new Date(utcDate.getTime() + 4 * 60 * 60 * 1000);
 
   // Format the UAE date and time as hours:minutes with 2 digits each
-  const options = { hour: '2-digit', minute: '2-digit' };
-  return uaeTime.toLocaleString('en-US', options); 
+  const options = { hour: "2-digit", minute: "2-digit" };
+  return uaeTime.toLocaleString("en-US", options);
 };
 </script>
 
