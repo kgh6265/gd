@@ -91,19 +91,19 @@
         </div>
         <div class="-mt-20 lg:mt-0">
           <img
-            src="/clubsday.jpg"
+            src="/about1.png"
             alt="Clubs Day"
             class="rounded-xl rotate-3 h-auto max-w-[1/5] lg:max-w-lg transition delay-75 hover:rotate-6"
             loading="lazy"
           />
           <img
-            src="/gamedesignworkshop.jpg"
+            src="/about2.jpg"
             alt="Game Design Basics Workshop"
             class="rounded-xl -rotate-3 -mt-18 lg:-mt-36 h-auto max-w-[1/5] lg:max-w-lg transition delay-75 hover:rotate-6"
             loading="lazy"
           />
           <img
-            src="/ethnicday.jpg"
+            src="/about3.jpg"
             alt="Ethnic Day"
             class="rounded-xl rotate-2 -mt-18 lg:-mt-36 h-auto max-w-[1/5] lg:max-w-lg transition delay-75 relative z-10 hover:rotate-6"
             loading="lazy"
