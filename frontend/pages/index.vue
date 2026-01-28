@@ -134,9 +134,12 @@
           },
         }"
       >
+        <template #spring2026="{ item }">
+          <MagazineList :magazines="magazineData.spring2026" />
+        </template>
         <template #fall2025="{ item }">
-<MagazineList :magazines="magazineData.fall2025" />
-</template>
+          <MagazineList :magazines="magazineData.fall2025" />
+        </template>
         <template #spring2025="{ item }">
           <MagazineList :magazines="magazineData.spring2025" />
         </template>
