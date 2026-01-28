@@ -264,6 +264,10 @@
 // Define different semesters for the magazine
 const magazineTabs = [
   {
+    slot: "spring2026",
+    label: "Spring 2026",
+  },
+  {
     slot: "fall2025",
     label: "Fall 2025",
   },
