@@ -33,9 +33,9 @@
             </li>
             <li>
               <a
-                href="/#events"
+                href="/charter"
                 class="text-zinc-300 hover:text-white transition:colors duration-200 text-sm lg:text-lg"
-                >Events</a
+                >Charter</a
               >
             </li>
             <li>

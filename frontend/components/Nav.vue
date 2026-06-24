@@ -14,7 +14,7 @@
       <NuxtLink to="/" class="hidden lg:block">Home</NuxtLink>
       <NuxtLink to="/#about" class="hidden lg:block">About</NuxtLink>
       <NuxtLink to="/#magazines" class="hidden lg:block">E-magazines</NuxtLink>
-      <NuxtLink to="/bylaws" class="hidden lg:block">BYLAWS</NuxtLink>
+      <NuxtLink to="/charter" class="hidden lg:block">CHARTER</NuxtLink>
       <NuxtLink to="/#members" class="hidden lg:block">Meet The Team</NuxtLink>
       <NuxtLink to="/dashboard" class="text-lg lg:text-xl">Dashboard</NuxtLink>
       <!-- <a href="#">Contact</a> -->

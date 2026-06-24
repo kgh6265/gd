@@ -509,6 +509,41 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiCredentialCredential extends Struct.CollectionTypeSchema {
+  collectionName: 'credentials';
+  info: {
+    singularName: 'credential';
+    pluralName: 'credentials';
+    displayName: 'Credential';
+    description: 'Certificates and Credentials';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    credential_id: Schema.Attribute.UID;
+    recipient_name: Schema.Attribute.String & Schema.Attribute.Required;
+    award: Schema.Attribute.String & Schema.Attribute.Required;
+    event_name: Schema.Attribute.String & Schema.Attribute.Required;
+    issue_date: Schema.Attribute.Date & Schema.Attribute.Required;
+    issued_by: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Graphic Design Club, RIT Dubai'>;
+    verification_url: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::credential.credential'
+    >;
+  };
+}
+
 export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   collectionName: 'events';
   info: {
@@ -985,6 +1020,7 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::about.about': ApiAboutAbout;
+      'api::credential.credential': ApiCredentialCredential;
       'api::event.event': ApiEventEvent;
       'api::magazine.magazine': ApiMagazineMagazine;
       'api::member.member': ApiMemberMember;
