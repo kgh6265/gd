@@ -5,6 +5,7 @@ export default defineEventHandler(async (event) => {
     let result = await $fetch(
       `${config.strapiUrl}api/events?populate=*`,
       {
+        timeout: 8000,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${config.strapiToken}`,
@@ -30,6 +31,9 @@ export default defineEventHandler(async (event) => {
 
     return { allEvents: events, upcomingEvents, pastEvents };
   } catch (error) {
-    return { failed: true };
+    throw createError({
+      statusCode: 504,
+      statusMessage: "Strapi Backend Timeout",
+    });
   }
 });

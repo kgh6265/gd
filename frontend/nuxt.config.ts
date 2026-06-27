@@ -2,6 +2,8 @@
 export default defineNuxtConfig({
   routeRules: {
     "/": { prerender: true },
+    "/designathon/**": { prerender: true },
+    "/designathon": { prerender: true },
     "/events/**": { ssr: false },
     "/dashboard": { ssr: true },
     "/login": { ssr: true },
