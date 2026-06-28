@@ -135,19 +135,19 @@
         }"
       >
         <template #spring2026="{ item }">
-          <MagazineList :magazines="magazineData?.spring2026" />
+          <MagazineList :magazines="magazineData.spring2026" />
         </template>
         <template #fall2025="{ item }">
-          <MagazineList :magazines="magazineData?.fall2025" />
+          <MagazineList :magazines="magazineData.fall2025" />
         </template>
         <template #spring2025="{ item }">
-          <MagazineList :magazines="magazineData?.spring2025" />
+          <MagazineList :magazines="magazineData.spring2025" />
         </template>
         <template #fall2024="{ item }">
-          <MagazineList :magazines="magazineData?.fall2024" />
+          <MagazineList :magazines="magazineData.fall2024" />
         </template>
         <template #spring2024="{ item }">
-          <MagazineList :magazines="magazineData?.spring2024" />
+          <MagazineList :magazines="magazineData.spring2024" />
         </template>
       </UTabs>
     </div>
@@ -169,12 +169,12 @@
       >
         <template #upcoming="{ item }">
           <EventList
-            :events="events?.upcomingEvents"
+            :events="events.upcomingEvents"
             :allow-registration="true"
           />
         </template>
         <template #past="{ item }">
-          <EventList :events="events?.pastEvents" :allow-registration="false" />
+          <EventList :events="events.pastEvents" :allow-registration="false" />
         </template>
       </UTabs>
     </div>
@@ -298,16 +298,9 @@ const eventTabs = [
 ];
 
 // Get all magazine data
-const fetchOptions = {
-  server: false,
-  lazy: true,
-  retry: 3,
-  retryDelay: 5000,
-};
-
-const { data: magazineData } = await useFetch("/api/magazines", fetchOptions);
-const { data: events } = await useFetch("/api/events", fetchOptions);
-const { data: members } = await useFetch("/api/members", fetchOptions);
+const { data: magazineData } = await useFetch("/api/magazines");
+const { data: events } = await useFetch("/api/events");
+const { data: members } = await useFetch("/api/members");
 
 // const allEvents = useState("events", events);
 </script>
