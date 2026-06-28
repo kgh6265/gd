@@ -4,18 +4,34 @@
     <h2 class="text-2xl lg:text-3xl mb-12 text-center">Official Club Charter</h2>
 
     <div class="space-y-12 charter-content">
+      <!-- Table of Contents -->
+      <div class="mb-12 p-6 bg-zinc-900 rounded-lg shadow-md border border-zinc-700">
+        <h3 class="text-xl font-bold mb-4">Table of Contents</h3>
+        <ul class="space-y-2 list-decimal ml-6 text-[#F76902]">
+          <li><a href="#vision" class="hover:underline text-white">Vision Statement</a></li>
+          <li><a href="#mission" class="hover:underline text-white">Mission Statement</a></li>
+          <li><a href="#objectives" class="hover:underline text-white">Objectives</a></li>
+          <li><a href="#pillars" class="hover:underline text-white">Club Pillars</a></li>
+          <li><a href="#structure" class="hover:underline text-white">Organizational Structure</a></li>
+          <li><a href="#leadership" class="hover:underline text-white">Leadership Structure and Responsibilities</a></li>
+          <li><a href="#membership" class="hover:underline text-white">Membership and Governance</a></li>
+          <li><a href="#conduct" class="hover:underline text-white">Conduct, Accountability, and Membership Standing</a></li>
+          <li><a href="#amendments" class="hover:underline text-white">Amendments</a></li>
+        </ul>
+      </div>
+
       <section>
-        <h3 class="text-2xl font-bold text-[#F76902] mb-4">1. Vision Statement</h3>
+        <h3 id="vision" class="text-2xl font-bold text-[#F76902] mb-4">1. Vision Statement</h3>
         <p>To become a leading creative community that empowers designers, artists, and innovators to create meaningful impact through design, collaboration, and visual storytelling across the university, industry, and wider community.</p>
       </section>
 
       <section>
-        <h3 class="text-2xl font-bold text-[#F76902] mb-4">2. Mission Statement</h3>
+        <h3 id="mission" class="text-2xl font-bold text-[#F76902] mb-4">2. Mission Statement</h3>
         <p>The Graphic Design Club empowers students to develop their creative, technical, and leadership abilities through hands-on experiences, industry engagement, collaborative projects, and community initiatives. By bridging academia, industry, and society, the club creates opportunities for members to learn, create, lead, and make meaningful contributions beyond the university environment.</p>
       </section>
 
       <section>
-        <h3 class="text-2xl font-bold text-[#F76902] mb-4">3. Objectives</h3>
+        <h3 id="objectives" class="text-2xl font-bold text-[#F76902] mb-4">3. Objectives</h3>
         <div class="space-y-4">
           <div>
             <h4 class="text-lg font-bold">3.1 Creative Excellence</h4>
@@ -45,7 +61,7 @@
       </section>
 
       <section>
-        <h3 class="text-2xl font-bold text-[#F76902] mb-4">4. Club Pillars</h3>
+        <h3 id="pillars" class="text-2xl font-bold text-[#F76902] mb-4">4. Club Pillars</h3>
         <div class="space-y-6">
           <div>
             <h4 class="text-lg font-bold">4.1 Creativity & Design Excellence</h4>
@@ -112,7 +128,7 @@
       </section>
 
       <section>
-        <h3 class="text-2xl font-bold text-[#F76902] mb-4">5. Organizational Structure</h3>
+        <h3 id="structure" class="text-2xl font-bold text-[#F76902] mb-4">5. Organizational Structure</h3>
         <p class="mb-4">The Graphic Design Club operates through a division-based structure designed to promote creativity, collaboration, leadership, and operational efficiency. Each division is responsible for advancing specific aspects of the club's mission and objectives while working collectively toward the club's vision.</p>
         <p class="mb-4">The club currently operates through four primary divisions:</p>
         
@@ -143,7 +159,7 @@
       </section>
 
       <section>
-        <h3 class="text-2xl font-bold text-[#F76902] mb-4">6. Leadership Structure and Responsibilities</h3>
+        <h3 id="leadership" class="text-2xl font-bold text-[#F76902] mb-4">6. Leadership Structure and Responsibilities</h3>
         
         <div class="space-y-6">
           <div>
@@ -232,7 +248,7 @@
       </section>
 
       <section>
-        <h3 class="text-2xl font-bold text-[#F76902] mb-4 mt-12">7. Membership and Governance</h3>
+        <h3 id="membership" class="text-2xl font-bold text-[#F76902] mb-4 mt-12">7. Membership and Governance</h3>
         
         <div class="space-y-6">
           <div>
@@ -274,10 +290,11 @@
           <div>
             <h4 class="text-lg font-bold">7.5 Vacancies and Resignations</h4>
             <p>Any leadership member may resign from their position by submitting written notice to the President.</p>
-            <p class="mt-2">In the event that a Division Director, Treasurer, or other appointed leader resigns, is removed, or is otherwise unable to fulfill their duties, the President shall appoint a replacement from among the club's Club Associates. Such appointments shall take effect immediately unless otherwise specified by the President.</p>
-            <p class="mt-2">In the event that the office of President becomes vacant, the sitting Division Directors shall determine, by majority decision, whether one of the current Division Directors shall assume the office of President.</p>
-            <p class="mt-2">If the sitting Division Directors are unable to reach a majority decision regarding presidential succession, the Faculty Advisor shall facilitate the appointment of an interim President from among the club's Club Associates.</p>
-            <p class="mt-2">Any President appointed through this process shall possess the same authority, responsibilities, and powers as a President elected or retained through the Club Governance Vote.</p>
+            <p class="mt-2">In the event that a Division Director, Treasurer, or any other appointed position becomes vacant through resignation, removal, or inability to fulfill its responsibilities, the President shall appoint a replacement from among the club's Club Associates. Such appointments shall take effect immediately unless otherwise specified by the President.</p>
+            <p class="mt-2">In the event that the office of President becomes vacant, the sitting Division Directors shall, by majority vote, appoint one of the current Division Directors to assume the office of President.</p>
+            <p class="mt-2">If the sitting Division Directors are unable to reach a majority decision, the Faculty Advisor shall facilitate further deliberation. If a majority decision remains unattainable, the Faculty Advisor shall appoint one of the sitting Division Directors to assume the office of President.</p>
+            <p class="mt-2">If no sitting Division Directors are available or willing to assume the office of President, the Faculty Advisor shall appoint an interim President from among the club's Club Associates. The interim President shall possess the authority necessary to administer the club and appoint a new Executive Division in accordance with this Charter.</p>
+            <p class="mt-2">Any President appointed through the procedures outlined in this section shall possess the same authority, responsibilities, and powers as a President elected or retained through the Club Governance Vote.</p>
           </div>
 
           <div>
@@ -290,7 +307,7 @@
       </section>
 
       <section>
-        <h3 class="text-2xl font-bold text-[#F76902] mb-4 mt-12">8. Conduct, Accountability, and Membership Standing</h3>
+        <h3 id="conduct" class="text-2xl font-bold text-[#F76902] mb-4 mt-12">8. Conduct, Accountability, and Membership Standing</h3>
         
         <div class="space-y-6">
           <div>
@@ -427,7 +444,7 @@
       </section>
 
       <section>
-        <h3 class="text-2xl font-bold text-[#F76902] mb-4 mt-12">9. Amendments</h3>
+        <h3 id="amendments" class="text-2xl font-bold text-[#F76902] mb-4 mt-12">9. Amendments</h3>
         <p>This Charter may be amended when changes are deemed necessary to support the continued growth, effectiveness, governance, or operations of the Graphic Design Club.</p>
         <p class="mt-2">Any Club Associate may propose an amendment to this Charter by submitting the proposed amendment to the Executive Division for consideration. The Executive Division shall review and discuss all proposed amendments.</p>
         <p class="mt-2">Approval of an amendment shall require a two-thirds (2/3) majority vote of the sitting members of the Executive Division. Approved amendments shall be documented within the official Charter and communicated to the club's membership.</p>
@@ -435,10 +452,10 @@
       </section>
       <section>
         <p class="italic text-gray-400 mt-10 border-t border-zinc-700 pt-6">
-          Document Title: Graphic Design Club Charter<br>
-          Original Adoption Date: 23/6/2026<br>
-          Current Version: v1.0<br>
-          Prepared By: 2026-2027 GDC President - Khaled Miari
+         <b>Document Title:</b> Graphic Design Club Charter<br>
+          <b>Original Adoption Date:</b> 23/6/2026<br>
+          <b>Current Version:</b> v1.0<br>
+          <b>Prepared By:</b> 2026-2027 GDC President - Khaled Miari
         </p>
       </section>
 

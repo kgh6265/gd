@@ -23,20 +23,20 @@
       />
     </div>
     <p
-      v-if="events.length === 0"
+      v-if="sortedEvents && sortedEvents.length === 0"
       class="mt-5 text-8xl lg:text-9xl text-zinc-500"
     >
       ( ͡° ʖ̯ ͡°)
     </p>
     <p
-      v-if="events.length === 0"
+      v-if="sortedEvents && sortedEvents.length === 0"
       class="mt-2 ml-[20px] text-lg lg:text-xl text-zinc-500 italic"
     >
       No upcoming events. Stay tuned!
     </p>
-    <div v-else class="mt-5 mb-10 space-y-10" v-if="!events.failed">
+    <div v-else-if="sortedEvents" class="mt-5 mb-10 space-y-10">
       <div
-        v-for="event in events"
+        v-for="event in sortedEvents"
         :key="event.id"
         class="flex items-center p-1 rounded-lg"
       >
@@ -74,14 +74,20 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 const props = defineProps(["events", "allowRegistration"]);
 
-// Sort events by date
-if (props.allowRegistration === true) {
-  props.events.sort((a, b) => new Date(a.date) - new Date(b.date));
-} else {
-  props.events.sort((a, b) => new Date(b.date) - new Date(a.date));
-}
+// Sort events by date reactively
+const sortedEvents = computed(() => {
+  if (!props.events || props.events.failed) return null;
+  const arr = [...props.events];
+  if (props.allowRegistration === true) {
+    arr.sort((a, b) => new Date(a.date) - new Date(b.date));
+  } else {
+    arr.sort((a, b) => new Date(b.date) - new Date(a.date));
+  }
+  return arr;
+});
 
 const formatDate = (date) => {
   const options = { year: "numeric", month: "long", day: "numeric" };

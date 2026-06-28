@@ -1,6 +1,10 @@
 <template>
   <div class="flex mt-5 justify-between gap-x-1 gap-y-10 w-auto flex-wrap flex-grow">
-    <div v-for="member in members" :key="member.id" class="w-full md:w-[45%] lg:w-[30%] p-0">
+    <USkeleton v-if="!members" class="w-full md:w-[45%] lg:w-[30%] h-48" :ui="{ rounded: 'rounded-xl' }" />
+    <USkeleton v-if="!members" class="w-full md:w-[45%] lg:w-[30%] h-48" :ui="{ rounded: 'rounded-xl' }" />
+    <USkeleton v-if="!members" class="w-full md:w-[45%] lg:w-[30%] h-48" :ui="{ rounded: 'rounded-xl' }" />
+
+    <div v-if="members" v-for="member in members" :key="member.id" class="w-full md:w-[45%] lg:w-[30%] p-0">
       <HoverCard>
         <UCard
           class="max-w-sm"

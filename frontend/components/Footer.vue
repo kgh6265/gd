@@ -26,16 +26,16 @@
             </li>
             <li>
               <a
-                href="/#magazines"
+                href="/charter"
                 class="text-zinc-300 hover:text-white transition:colors duration-200 text-sm lg:text-lg"
-                >E-magazines</a
+                >Charter</a
               >
             </li>
             <li>
               <a
-                href="/charter"
+                href="/#magazines"
                 class="text-zinc-300 hover:text-white transition:colors duration-200 text-sm lg:text-lg"
-                >Charter</a
+                >E-magazines</a
               >
             </li>
             <li>
@@ -82,7 +82,7 @@
           </p>
         </div>
         <div class="text-sm lg:text-lg text-left lg:text-right mt-10 lg:mt-0">
-          <p class="text-zinc-500">© 2025 Graphic Design Club, RIT Dubai</p>
+          <p class="text-zinc-500">© 2026 Graphic Design Club, RIT Dubai</p>
           <p class="text-zinc-500">Made with ❤️ by the GDC Media Team</p>
           <p class="mt-5 text-zinc-500 underline">
             <NuxtLink to="/privacy">Privacy Policy</NuxtLink>

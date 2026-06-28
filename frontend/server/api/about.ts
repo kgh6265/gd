@@ -1,12 +1,20 @@
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
 
-  let result = await $fetch(`${config.strapiUrl}api/about`, {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${config.strapiToken}`,
-    },
-  });
+  try {
+    let result = await $fetch(`${config.strapiUrl}api/about`, {
+      timeout: 8000,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${config.strapiToken}`,
+      },
+    });
 
-  return result;
+    return result;
+  } catch (error) {
+    throw createError({
+      statusCode: 504,
+      statusMessage: "Strapi Backend Timeout",
+    });
+  }
 });

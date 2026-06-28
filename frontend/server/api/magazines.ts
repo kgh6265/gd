@@ -5,6 +5,7 @@ export default defineEventHandler(async (event) => {
     let result = await $fetch(
       `${config.strapiUrl}api/magazines?locale=all&populate=*&pagination[pageSize]=100`,
       {
+        timeout: 8000,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${config.strapiToken}`,
@@ -24,6 +25,9 @@ export default defineEventHandler(async (event) => {
     return magazines;
   } catch (error) {
     console.error(error);
-    return { failed: true };
+    throw createError({
+      statusCode: 504,
+      statusMessage: "Strapi Backend Timeout",
+    });
   }
 });
