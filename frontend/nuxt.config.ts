@@ -4,7 +4,6 @@ export default defineNuxtConfig({
     "/": { prerender: true },
     "/designathon/**": { prerender: true },
     "/designathon": { prerender: true },
-    "/events/**": { ssr: false },
     "/dashboard": { ssr: true },
     "/login": { ssr: true },
     "/confirm": { ssr: true },
@@ -22,11 +21,42 @@ export default defineNuxtConfig({
     "/health-check": {
       redirect: "https://kgh6265.github.io/statuspage/",
     },
-    "/magazines/latest": {
-      isr: 3600,
-    },
   },
   compatibilityDate: "2024-04-03",
+  hooks: {
+    async "nitro:config"(nitroConfig) {
+      if (nitroConfig.dev) {
+        return;
+      }
+
+      const strapiUrl = process.env.STRAPI_URL || "https://gd-strapi.onrender.com";
+      const token = process.env.STRAPI_TOKEN;
+      if (!token) return;
+
+      try {
+        console.log("Fetching credentials for prerendering...");
+        const url = `${strapiUrl.replace(/\/?$/, "/")}/api/credentials?pagination[pageSize]=1000`;
+        const res = await fetch(url, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        
+        if (data && data.data) {
+          const routes = data.data.map((item: any) => {
+            const attrs = item.attributes || item;
+            return `/verify/${attrs.credential_id || attrs.credentialId}`;
+          });
+          
+          nitroConfig.prerender = nitroConfig.prerender || {};
+          nitroConfig.prerender.routes = nitroConfig.prerender.routes || [];
+          nitroConfig.prerender.routes.push(...routes);
+          console.log(`Successfully added ${routes.length} certificate routes for prerendering.`);
+        }
+      } catch (e) {
+        console.error("Failed to fetch credentials for prerendering:", e);
+      }
+    },
+  },
   devtools: { enabled: true },
   modules: [
     "@nuxt/ui",
