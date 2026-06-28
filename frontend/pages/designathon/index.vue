@@ -84,6 +84,33 @@
     </section>
 
     <!-- ████████████████████████████████████████ -->
+    <!--  PRIZES & SWAG                            -->
+    <!-- ████████████████████████████████████████ -->
+    <section class="prizes-section">
+      <div class="prizes-header">
+        <span class="prizes-label">THE REWARD</span>
+        <h2 class="prizes-title">LAST YEAR'S HAUL</h2>
+        <p class="prizes-desc">
+          A look at the exclusive prizes from our previous edition. Top designers took home premium glass awards, custom-designed apparel, and limited-edition club merchandise.
+        </p>
+      </div>
+
+      <div class="prizes-gallery">
+        <div class="prize-img-wrapper wide">
+          <img src="/designathon/prize-spread.png" alt="DesignAthon Prizes Spread" loading="lazy" />
+        </div>
+        <div class="prize-grid-bottom">
+          <div class="prize-img-wrapper">
+            <img src="/designathon/prize-close-up-1.png" alt="Glass Award Close-up" loading="lazy" />
+          </div>
+          <div class="prize-img-wrapper">
+            <img src="/designathon/prize-close-up-2.png" alt="Glass Award and T-shirt" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ████████████████████████████████████████ -->
     <!--  UPCOMING — Loud announcement             -->
     <!-- ████████████████████████████████████████ -->
     <section class="upcoming-section">
@@ -516,6 +543,83 @@ const pastEditions = [
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.55);
   line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════ */
+/*  PRIZES                                 */
+/* ═══════════════════════════════════════ */
+.prizes-section {
+  padding: 8rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.prizes-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.prizes-label {
+  display: block;
+  font-family: "Geist Mono", monospace;
+  color: var(--punk-pink);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.prizes-title {
+  font-family: "PP Editorial", serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 400;
+  color: white;
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+
+.prizes-desc {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.prizes-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.prize-img-wrapper {
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.prize-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.prize-img-wrapper:hover img {
+  transform: scale(1.02);
+}
+
+.prize-grid-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .prize-grid-bottom {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ═══════════════════════════════════════ */

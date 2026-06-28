@@ -57,12 +57,10 @@
 const route = useRoute()
 const credentialId = route.params.id
 
-// Get Strapi configuration
-const config = useRuntimeConfig()
-const strapiUrl = config.public.STRAPI_URL || 'https://gd-strapi.onrender.com'
-
 // Fetch credential by ID
-const { data: response, pending, error } = await useFetch(`${strapiUrl}/api/credentials?filters[credential_id][$eq]=${credentialId}`)
+const { data: response, pending, error } = await useFetch(`/api/credentials`, {
+  query: { id: credentialId },
+})
 
 // Computed property to extract the actual credential data
 const credential = computed(() => {
