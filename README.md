@@ -69,8 +69,7 @@ Here's everything holding this thing together, and why each one is here:
 ## How the repo is laid out
 
 ```
-.
-├── frontend/        # the Nuxt.js website
+├── frontend/         # the Nuxt.js website
 │   ├── components/   # Vue components (Nav, Footer, MagazineList, EventList, etc.)
 │   ├── layouts/      # page layouts
 │   ├── pages/        # routed pages (index, dashboard, events/[id], magazines/[magazine], verify/[id]...)
@@ -78,11 +77,11 @@ Here's everything holding this thing together, and why each one is here:
 │   ├── plugins/      # client plugins (charts, etc.)
 │   └── public/       # static assets, fonts, security.txt, humans.txt, robots.txt
 │
-├── backend/         # the Strapi CMS
+├── backend/          # the Strapi CMS
 │   ├── config/       # database, server, middlewares, plugins (upload + email providers)
 │   └── src/api/      # content types: about, credential, event, magazine, member
 │
-└── supabase/        # Supabase project config + edge functions
+└── supabase/         # Supabase project config + edge functions
     └── functions/send-confirmation-email/   # the Deno function that fires the Resend email
 ```
 
