@@ -35,7 +35,7 @@ export default defineNuxtConfig({
 
       try {
         console.log("Fetching credentials for prerendering...");
-        const url = `${strapiUrl.replace(/\/?$/, "/")}/api/credentials?pagination[pageSize]=1000`;
+        const url = `${strapiUrl.replace(/\/?$/, "/")}api/credentials?pagination[pageSize]=1000`;
         const res = await fetch(url, {
           headers: { Authorization: `Bearer ${token}` },
         });
