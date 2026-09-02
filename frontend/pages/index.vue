@@ -134,9 +134,6 @@
           },
         }"
       >
-        <template #spring2027="{ item }">
-          <MagazineList :magazines="magazineData.spring2027" />
-        </template>
         <template #fall2026="{ item }">
           <MagazineList :magazines="magazineData.fall2026" />
         </template>
@@ -269,10 +266,6 @@
 <script setup>
 // Define different semesters for the magazine
 const magazineTabs = [
-  {
-    slot: "spring2027",
-    label: "Spring 2027",
-  },
   {
     slot: "fall2026",
     label: "Fall 2026",
