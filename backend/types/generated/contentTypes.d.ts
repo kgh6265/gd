@@ -600,6 +600,7 @@ export interface ApiMagazineMagazine extends Struct.CollectionTypeSchema {
         'Fall 2025',
         'Spring 2026',
         'Fall 2026',
+        'Spring 2027',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
